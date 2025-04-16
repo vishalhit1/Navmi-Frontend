@@ -492,7 +492,8 @@ const Header = () => {
             ))}
             <Modal className='QuickEnqu' size="lg"
                 aria-labelledby="contained-modal-title-vcenter"
-                centered show={show} onHide={handleClose}>
+                centered backdrop="static"
+                keyboard={false} show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                 </Modal.Header>
                 <Modal.Body>
@@ -595,7 +596,8 @@ const Header = () => {
             </Modal>
             <Modal className='QuickEnqu' size="xl"
                 aria-labelledby="contained-modal-title-vcenter"
-                centered show={show2} onHide={handleClose2}>
+                centered backdrop="static"
+                keyboard={false} show={show2} onHide={handleClose2}>
                 <Modal.Header closeButton>
                 </Modal.Header>
                 <Modal.Body>

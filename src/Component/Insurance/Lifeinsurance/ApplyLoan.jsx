@@ -313,7 +313,8 @@ const ApplyLoan = () => {
             </Modal>
             <Modal className='QuickEnqu' size="xl"
                 aria-labelledby="contained-modal-title-vcenter"
-                centered show={show2} onHide={handleClose2}>
+                centered backdrop="static"
+                keyboard={false} show={show2} onHide={handleClose2}>
                 <Modal.Header closeButton>
                 </Modal.Header>
                 <Modal.Body>

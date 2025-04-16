@@ -9,7 +9,8 @@ const ApplyLoan = () => {
         <>
             <button onClick={handleShow} className="applynow blink">Apply Now</button>
 
-            <Modal show={show} onHide={handleClose} centered size="xl">
+            <Modal show={show} onHide={handleClose} centered backdrop="static"
+                keyboard={false} size="xl">
                 <Modal.Header
                     closeButton
                     style={{ justifyContent: "center", marginTop: "40px" }}

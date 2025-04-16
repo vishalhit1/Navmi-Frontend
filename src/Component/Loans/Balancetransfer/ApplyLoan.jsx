@@ -487,7 +487,7 @@ const ApplyLoan = () => {
         <>
             <button onClick={handleShow} className="applynow blink">Apply Now</button>
 
-            <Modal show={show} onHide={handleClose} centered size="xl">
+            <Modal show={show} onHide={handleClose} centered backdrop="static" keyboard={false} size="xl">
                 <Modal.Header
                     closeButton
                     style={{ justifyContent: "center", marginTop: "40px" }}
@@ -738,7 +738,7 @@ const ApplyLoan = () => {
             
             <Modal className='QuickEnqu' size="xl"
                 aria-labelledby="contained-modal-title-vcenter"
-                centered show={show2} onHide={handleClose2}>
+                centered backdrop="static" keyboard={false} show={show2} onHide={handleClose2}>
                 <Modal.Header closeButton>
                 </Modal.Header>
                 <Modal.Body>
