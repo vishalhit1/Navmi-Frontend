@@ -33,6 +33,7 @@ import PrincipalCalculator from "../Pages/Calculator/Principalcalculator";
 import Emicalculator from "../Pages/Calculator/Emicalculator";
 import RevisedEMICalculator from "../Pages/Calculator/Revised-emi-tenure";
 import Emicalculatorlist from "../Pages/Emi-calculator-list";
+import Privacypolicy from "../Pages/Privacypolicy";
 
 export const routes = [
   {
@@ -214,5 +215,10 @@ export const routes = [
     path: "/emi-calculator-list",
     exact: true,
     element: <Emicalculatorlist />,
+  },
+  {
+    path: "/privacy-policy",
+    exact: true,
+    element: <Privacypolicy />,
   },
 ];

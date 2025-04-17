@@ -3729,3 +3729,7 @@ button.submit12 {
     font-weight: 500;
     font-size: .875em;
 }
+
+.textLayer p strong {
+    color: #283e87;
+}
