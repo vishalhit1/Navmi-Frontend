@@ -259,6 +259,7 @@ const Tenurecalculator = () => {
 
         {/* Repayment Schedule Section */}
         {(monthlySchedule.length > 0 || yearlySchedule.length > 0) && (
+          <div class="loan-tenure-summary">
           <Card className="mt-4 mb-5">
             <Card.Header as="h4" className="text-center">Repayment Schedule</Card.Header>
             <Card.Body>
@@ -273,14 +274,12 @@ const Tenurecalculator = () => {
 
               {activeTab === 'monthly' && (
                 <div className="table-responsive">
-                  <Table striped bordered hover>
+                  <Table className='mt-4' striped>
                     <thead className="bg-light">
                       <tr>
                         <th>Month</th>
-                        <th>Year</th>
                         <th>Principal (₹)</th>
                         <th>Interest (₹)</th>
-                        <th>EMI (₹)</th>
                         <th>Balance (₹)</th>
                       </tr>
                     </thead>
@@ -288,10 +287,8 @@ const Tenurecalculator = () => {
                       {monthlySchedule.map((entry, index) => (
                         <tr key={index}>
                           <td>{entry.month}</td>
-                          <td>{entry.year}</td>
                           <td>{Math.round(entry.principal).toLocaleString('en-IN')}</td>
                           <td>{Math.round(entry.interest).toLocaleString('en-IN')}</td>
-                          <td>{Math.round(entry.totalRepayment).toLocaleString('en-IN')}</td>
                           <td>{Math.round(entry.remainingBalance).toLocaleString('en-IN')}</td>
                         </tr>
                       ))}
@@ -302,7 +299,7 @@ const Tenurecalculator = () => {
 
               {activeTab === 'yearly' && (
                 <div className="table-responsive">
-                  <Table striped bordered hover>
+                  <Table className='mt-4' striped>
                     <thead className="bg-light">
                       <tr>
                         <th>Year</th>
@@ -332,6 +329,7 @@ const Tenurecalculator = () => {
               )}
             </Card.Body>
           </Card>
+          </div>
         )}
       </Container>
     </>

@@ -211,7 +211,7 @@ const ApplyLoan = () => {
             });
 
             try {
-                const response = await axios.post("http://localhost:8000/loan/apply", {
+                const response = await axios.post("http://localhost:8000/mail/personalloans", {
                     fullName,
                     loanAmount,
                     netSalary,

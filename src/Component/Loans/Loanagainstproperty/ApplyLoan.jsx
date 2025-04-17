@@ -596,7 +596,7 @@ const ApplyLoan = () => {
                                                         <option value="Select Your Residence Type" disabled>
                                                             Select Your Loan Amount
                                                         </option>
-                                                         <option value="₹30 - ₹50 Lacs">₹30 - ₹50 Lacs</option>
+                                                        <option value="₹30 - ₹50 Lacs">₹30 - ₹50 Lacs</option>
                                                         <option value="₹50 - ₹1 Cr">₹50 - ₹1 Cr</option>
                                                         <option value="₹1 Cr - ₹3 Cr">₹1 Cr - ₹3 Cr</option>
                                                         <option value="₹3 Cr - ₹5 Cr">₹3 Cr - ₹5 Cr</option>
@@ -817,7 +817,7 @@ const ApplyLoan = () => {
                 <Modal.Header closeButton>
                 </Modal.Header>
                 <Modal.Body>
-                  <LoginModal handleClose2={handleClose2}/>
+                    <LoginModal handleClose2={handleClose2} />
                 </Modal.Body>
             </Modal>
         </>

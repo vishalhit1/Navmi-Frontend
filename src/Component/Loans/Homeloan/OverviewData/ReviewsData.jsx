@@ -20,7 +20,7 @@ const ReviewsData = () => {
                     <Col lg={4} md={12} sm={12} className="mb-5">
                         <div className="profiledata">
                             <img style={{ marginLeft: 'auto', marginRight: 'auto' }} src={mens} alt="" />
-                            <h1 className="mt-3 mb-3">Vishal Dodia</h1>
+                            <h1 className="mt-3 mb-3">Vishal</h1>
                         </div>
                         <div className="testi" style={{ margin: '0px', marginBottom: '50px', position: 'relative' }}>
                             <div className="starss">
@@ -42,7 +42,7 @@ const ReviewsData = () => {
                     <Col lg={4} md={12} sm={12} className="mb-5">
                         <div className="profiledata">
                             <img style={{ marginLeft: 'auto', marginRight: 'auto' }} src={mens1} alt="" />
-                            <h1 className="mt-3 mb-3">Chandru naik</h1>
+                            <h1 className="mt-3 mb-3">Chandru</h1>
                         </div>
                         <div className="testi" style={{ margin: '0px', marginBottom: '50px', position: 'relative' }}>
                             <div className="starss">
@@ -62,7 +62,7 @@ const ReviewsData = () => {
                     <Col lg={4} md={12} sm={12} className="mb-5">
                         <div className="profiledata">
                             <img style={{ marginLeft: 'auto', marginRight: 'auto' }} src={mens2} alt="" />
-                            <h1 className="mt-3 mb-3">Vinay Rawal</h1>
+                            <h1 className="mt-3 mb-3">Vinay</h1>
                         </div>
                         <div className="testi" style={{ margin: '0px', marginBottom: '50px', position: 'relative' }}>
                             <div className="starss">
@@ -82,7 +82,7 @@ const ReviewsData = () => {
                     <Col lg={4} md={12} sm={12} className="mb-5">
                         <div className="profiledata">
                             <img style={{ marginLeft: 'auto', marginRight: 'auto' }} src={mens3} alt="" />
-                            <h1 className="mt-3 mb-3">Bakul Ruparel</h1>
+                            <h1 className="mt-3 mb-3">Bakul</h1>
                         </div>
                         <div className="testi" style={{ margin: '0px', marginBottom: '50px', position: 'relative' }}>
                             <div className="starss">
@@ -101,7 +101,7 @@ const ReviewsData = () => {
                     <Col lg={4} md={12} sm={12} className="mb-5">
                         <div className="profiledata">
                             <img style={{ marginLeft: 'auto', marginRight: 'auto' }} src={mens4} alt="" />
-                            <h1 className="mt-3 mb-3">Ashish Bhatt</h1>
+                            <h1 className="mt-3 mb-3">Ashish</h1>
                         </div>
                         <div className="testi" style={{ margin: '0px', marginBottom: '50px', position: 'relative' }}>
                             <div className="starss">
@@ -122,7 +122,7 @@ const ReviewsData = () => {
                     <Col lg={4} md={12} sm={12} className="mb-5">
                         <div className="profiledata">
                             <img style={{ marginLeft: 'auto', marginRight: 'auto' }} src={mens5} alt="" />
-                            <h1 className="mt-3 mb-3">Yatin Kapadia</h1>
+                            <h1 className="mt-3 mb-3">Yatin</h1>
                         </div>
                         <div className="testi" style={{ margin: '0px', marginBottom: '50px', position: 'relative' }}>
                             <div className="starss">
@@ -143,7 +143,7 @@ const ReviewsData = () => {
                     <Col lg={4} md={12} sm={12} className="mb-5">
                         <div className="profiledata">
                             <img style={{ marginLeft: 'auto', marginRight: 'auto' }} src={mens6} alt="" />
-                            <h1 className="mt-3 mb-3">Vasant Surana</h1>
+                            <h1 className="mt-3 mb-3">Vasant</h1>
                         </div>
                         <div className="testi" style={{ margin: '0px', marginBottom: '50px', position: 'relative' }}>
                             <div className="starss">
@@ -164,7 +164,7 @@ const ReviewsData = () => {
                     <Col lg={4} md={12} sm={12} className="mb-5">
                         <div className="profiledata">
                             <img style={{ marginLeft: 'auto', marginRight: 'auto' }} src={mens7} alt="" />
-                            <h1 className="mt-3 mb-3">Bharat Borana</h1>
+                            <h1 className="mt-3 mb-3">Bharat</h1>
                         </div>
                         <div className="testi" style={{ margin: '0px', marginBottom: '50px', position: 'relative' }}>
                             <div className="starss">

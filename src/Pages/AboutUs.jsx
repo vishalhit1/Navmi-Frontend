@@ -11,6 +11,7 @@ import social1 from "../assets/facebookk.svg"
 import social2 from "../assets/instagramm.svg"
 import social3 from "../assets/twitterr.svg"
 import social4 from "../assets/linkdien.svg"
+import social5 from "../assets/youtube1.png"
 import welcomenavmi from "../assets/welcometonavmi.jpeg"
 import whattoexpect from "../assets/whattoexpect.jpeg"
 import whatweoffer from "../assets/whatweoffer.jpeg"
@@ -325,12 +326,6 @@ const AboutUs = () => {
                   <h6>Founder</h6>
                   <h6>Managing Director</h6>
                   <h6>Navmi Finserrv / 3M Solutions / 3M Finserrv</h6>
-                  <div className="socialiconssss">
-                    <img src={social1} alt="" />
-                    <img src={social2} alt="" />
-                    <img src={social3} alt="" />
-                    <img src={social4} alt="" />
-                  </div>
                 </div>
               </div>
               <div>
@@ -340,12 +335,6 @@ const AboutUs = () => {
                   <h6>Co-founder. </h6>
                   <h6>Senior Manager</h6>
                   <h6>Navmi Finserrv / 3M Solutions / 3M Finserrv</h6>
-                  <div className="socialiconssss">
-                    <img src={social1} alt="" />
-                    <img src={social2} alt="" />
-                    <img src={social3} alt="" />
-                    <img src={social4} alt="" />
-                  </div>
                 </div>
               </div>
               <div>
@@ -355,15 +344,16 @@ const AboutUs = () => {
                   <h6 style={{visibility:'hidden'}}>Co-founder. </h6>
                   <h6>Technical Manager</h6>
                   <h6>Navmi Finserrv / 3M Solutions / 3M Finserrv</h6>
-                  <div className="socialiconssss">
-                    <a target="_blank" href="https://www.facebook.com/jigar.nathwani/"><img src={social1} alt="" /></a>
-                    <a target="_blank" href="https://www.instagram.com/jdjigar/"><img src={social2} alt="" /></a>
-                    <a target="_blank" href="https://twitter.com/imnathwani"><img src={social3} alt="" /></a>
-                    <a target="_blank" href="https://in.linkedin.com/company/handsintechnology"><img src={social4} alt="" /></a>
-                  </div>
                 </div>
               </div>
             </Slider>
+            <div className="socialiconssss mt-5">
+                    <a target="_blank" href="https://www.facebook.com/Navmifinserrv/"><img src={social1} alt="" /></a>
+                    <a target="_blank" href="https://www.instagram.com/navmifinserrv/?next=%2F"><img src={social2} alt="" /></a>
+                    <a target="_blank" href="https://x.com/Navmi_finserrv"><img src={social3} alt="" /></a>
+                    <a target="_blank" href="https://www.linkedin.com/in/navmi-finserrv-68140733a/"><img src={social4} alt="" /></a>
+                    <a target="_blank" href="https://www.youtube.com/@NavmiFinserrv/shorts"><img src={social5} alt="" /></a>
+                  </div>
           </section>
         </Container>
       </div>

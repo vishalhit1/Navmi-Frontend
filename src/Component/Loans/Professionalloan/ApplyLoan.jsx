@@ -162,7 +162,7 @@ const ApplyLoan = () => {
             });
 
             try {
-                const response = await axios.post("http://localhost:8000/mail/loan-application", {
+                const response = await axios.post("http://localhost:8000/mail/professionalloans", {
                     fullName,
                     age,
                     panNo,

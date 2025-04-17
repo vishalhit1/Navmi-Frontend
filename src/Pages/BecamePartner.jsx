@@ -230,8 +230,8 @@ const BecamePartner = () => {
       isValid = false;
     }
 
-     // First Name validation
-     if (!formData.middlename) {
+    // First Name validation
+    if (!formData.middlename) {
       tempErrors.middlename = "Middle Name is required";
       isValid = false;
     }
@@ -544,18 +544,427 @@ const BecamePartner = () => {
         </Container>
       </section>
 
-      {/* Rest of the sections remain the same */}
-      <section className="online-dsa-registration">
-        <Container>
-          <h3>Online DSA Registration with Navmi Finserrv</h3>
-          <p>
-            Embark on a rewarding career as a Direct Sales Agent (DSA) with Navmi Finserrv! Our Online DSA Registration process opens the door to a world of opportunities in the financial sector. As India's leading loan distributor, we offer an extensive range of financial products, including Home Loans, Business Loans, Personal Loans, Loans Against Property, Car Loans, Professional Loans, Construction Loans, Working Capital, and Balance Transfer.
-          </p>
-          {/* Rest of this section content */}
-        </Container>
-      </section>
+      <>
+        <section className="online-dsa-registration">
+          <div className="container">
+            <h3>Online DSA Registration with Navmi Finserrv</h3>
+            <p>
+              Embark on a rewarding career as a Direct Sales Agent (DSA) with Navmi
+              Finserrv! Our Online DSA Registration process opens the door to a world
+              of opportunities in the financial sector. As India’s leading loan
+              distributor, we offer an extensive range of financial products,
+              including Home Loans, Business Loans, Personal Loans, Loans Against
+              Property, Car Loans, Professional Loans, Construction Loans, Working
+              Capital, and Balance Transfer.
+            </p>
+            <p>
+              With 15 years of experience and a proven track record, Navmi Finserrv
+              provides a seamless and efficient onboarding process, ensuring you’re
+              ready to hit the ground running. You’ll also have access to advanced
+              tools such as our EMI Calculator to assist you in delivering the best
+              financial solutions to your clients.
+            </p>
+            <p>
+              Join us in our mission to help over 4 million clients make intelligent
+              financial decisions, and enjoy the benefits of attractive commissions as
+              you grow in your career. Start your journey today and be a part of a
+              dynamic team that’s shaping the future of finance
+            </p>
+          </div>
+        </section>
+        <section className="online-dsa-registration">
+          <div className="container">
+            <h3>Who is a DSA?</h3>
+            <p>
+              A DSA (Direct Sales Agent) is an individual or business entity that
+              serves as an intermediary between financial institutions, such as banks
+              and NBFCs, and potential customers. They help customers access a variety
+              of financial products like loans, insurance, and credit cards. DSAs
+              operate on a commission-based model, earning fees or commissions for
+              each successful sale or referral they generate.
+            </p>
+            <div className="skdllkdl row">
+              <div className="col-lg-5">
+                <img className="w-100" src={dasas} alt="" />
+              </div>
+              <div className="col-lg-7">
+                <div className="row">
+                  <div className="col-lg-6">
+                    <div className="whoisdsa_whoisdsa">
+                      <h5>Identifying Potential Customers</h5>
+                      <h6>
+                        Searching and connecting with the individuals who need
+                        financial services and others.
+                      </h6>
+                    </div>
+                  </div>
+                  <div className="col-lg-6">
+                    <div className="whoisdsa_whoisdsa">
+                      <h5>Guiding Borrowers</h5>
+                      <h6>
+                        Educate customers on the merits of co-curricular activities
+                        and how to apply for a loan.
+                      </h6>
+                    </div>
+                  </div>
+                  <div className="col-lg-6">
+                    <div className="whoisdsa_whoisdsa">
+                      <h5>Ensuring Documentation</h5>
+                      <h6>
+                        Ensuring the accuracy and availability of all necessary
+                        paperwork.
+                      </h6>
+                    </div>
+                  </div>
+                  <div className="col-lg-6">
+                    <div className="whoisdsa_whoisdsa">
+                      <h5>Closing Deals</h5>
+                      <h6>
+                        Connect borrowers with lenders and finalize transactions.
+                      </h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section className="online-dsa-registration">
+          <div className="container">
+            <h3>Documents Required for DSA Registration</h3>
+            <p>
+              To become a Loan Agent with Navmi Finserrv, you must submit a soft copy
+              of your phone number and PAN card for individuals or GST for firms at
+              the time of registration.
+            </p>
+            <div className="row">
+              <div className="col-lg-3">
+                <div className="documentsrequired">
+                  <div className="">
+                    <img
+                      src="https://ruloans-bucket.s3.amazonaws.com/b2c/become-a-partner/contact-number-icon.png"
+                      alt="Contact Number"
+                    />
+                  </div>
+                  <p>Contact Number</p>
+                </div>
+              </div>
+              <div className="col-lg-3">
+                <div className="documentsrequired">
+                  <div className="">
+                    <img
+                      src="https://ruloans-bucket.s3.amazonaws.com/b2c/become-a-partner/pan-card-icon.png"
+                      alt="Contact Number"
+                    />
+                  </div>
+                  <p>PAN Card</p>
+                </div>
+              </div>
+              <div className="col-lg-3">
+                <div className="documentsrequired">
+                  <div className="">
+                    <img
+                      src="https://ruloans-bucket.s3.amazonaws.com/b2c/become-a-partner/gst-doc-icon.png"
+                      alt="Contact Number"
+                    />
+                  </div>
+                  <p>GST Doc. (for Firms)</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section className="creditandloan">
+          <div>
+            <div className="maincom text-center mb-5">
+              <h2>Become a Partner with Navmi Finserrv!</h2>
+            </div>
+            <div className="container">
+              <p className="become-para">
+                Enhance your professional journey and elevate your entrepreneurial
+                ambitions by partnering with Navmi Finserrv! Whether you're a seasoned
+                professional or someone eager to break into the world of finance, we
+                welcome individuals with strong interpersonal skills and a relentless
+                passion for success. As a partner, you'll have the opportunity to
+                collaborate with a trusted channel partner of over 40+ banks and
+                NBFCs, unlocking new growth avenues. So, if you're ready to fire up
+                your entrepreneurial instincts and drive your career to new heights,
+                join Team Navmi Finserrv today and embark on a rewarding journey to
+                victory!
+              </p>
+              <div className="loans-dsaaa">
+                <div className="partnerWithnavmifinv">
+                  <div className="partnerWithnavmifinv__3J51T">
+                    <img
+                      src="https://ruloans-bucket.s3.amazonaws.com/b2c/shared/images/become-a-partner/loan-agent-icon.webp"
+                      className="partnerWithnavmifinv_logo"
+                    />
+                    <p>Loan Agent</p>
+                  </div>
+                </div>
+                <div className="partnerWithnavmifinv">
+                  <div className="partnerWithnavmifinv__3J51T">
+                    <img
+                      src="https://ruloans-bucket.s3.amazonaws.com/b2c/become-a-partner/ex-banker-icon.png"
+                      className="partnerWithnavmifinv_logo"
+                    />
+                    <p>Ex-Banker</p>
+                  </div>
+                </div>
+                <div className="partnerWithnavmifinv">
+                  <div className="partnerWithnavmifinv__3J51T">
+                    <img
+                      src="https://ruloans-bucket.s3.amazonaws.com/b2c/become-a-partner/financial-analyst-icon.png"
+                      className="partnerWithnavmifinv_logo"
+                    />
+                    <p>Financial Analyst</p>
+                  </div>
+                </div>
+                <div className="partnerWithnavmifinv">
+                  <div className="partnerWithnavmifinv__3J51T">
+                    <img
+                      src="https://ruloans-bucket.s3.amazonaws.com/b2c/become-a-partner/mutual-fund-agent-icon.png"
+                      className="partnerWithnavmifinv_logo"
+                    />
+                    <p>Mutual Fund Agent</p>
+                  </div>
+                </div>
+                <div className="partnerWithnavmifinv">
+                  <div className="partnerWithnavmifinv__3J51T">
+                    <img
+                      src="https://ruloans-bucket.s3.amazonaws.com/b2c/become-a-partner/chartered-accountant-icon.png"
+                      className="partnerWithnavmifinv_logo"
+                    />
+                    <p>Chartered Accountant</p>
+                  </div>
+                </div>
+                <div className="partnerWithnavmifinv">
+                  <div className="partnerWithnavmifinv__3J51T">
+                    <img
+                      src="https://ruloans-bucket.s3.amazonaws.com/b2c/shared/images/become-a-partner/builder-icon.webp"
+                      className="partnerWithnavmifinv_logo"
+                    />
+                    <p>Builder</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section className="eligibility_cretria">
+          <div className="container">
+            <h3>
+              What Are the Eligibility Criteria for The Navmi Finserrv DSA
+              Registration Process?
+            </h3>
+            <p>
+              Navmi Finserrv has partnerships with more than 40+ leading Banks and
+              NBFCs to offer loans. Navmi Finserrv includes Personal Loans, Business
+              Loans, Home Loans, Loans against Property or Mortgage Loans, Car loans,
+              Credit reports, and more. The eligibility criteria to operate as a Loan
+              DSA Partner or Loan DSA Franchise are as follows:
+            </p>
+            <div className="row">
+              <div className="col-lg-3">
+                <div className="documentsrequired one">
+                  <div className="">
+                    <img
+                      src="https://ruloans-bucket.s3.amazonaws.com/b2c/become-a-partner/eligibility-age-icon.png"
+                      alt="Contact Number"
+                    />
+                  </div>
+                  <p>Age</p>
+                  <h2>You must be over 25 years of age.</h2>
+                </div>
+              </div>
+              <div className="col-lg-3">
+                <div className="documentsrequired one">
+                  <div className="">
+                    <img
+                      src="https://ruloans-bucket.s3.amazonaws.com/b2c/become-a-partner/eligibility-nationality-icon.png"
+                      alt="Contact Number"
+                    />
+                  </div>
+                  <p>Nationality</p>
+                  <h2>You must be a Resident Citizen of India</h2>
+                </div>
+              </div>
+              <div className="col-lg-3">
+                <div className="documentsrequired one">
+                  <div className="">
+                    <img
+                      src="https://ruloans-bucket.s3.amazonaws.com/b2c/shared/images/become-a-partner/eligibility-educational-qualifications-icon.webp"
+                      alt="Contact Number"
+                    />
+                  </div>
+                  <p>Educational Qualifications</p>
+                  <h2>
+                    There are no educational requirements to qualify as a Navmi
+                    Finserrv Loan DSA Partner
+                  </h2>
+                </div>
+              </div>
+              <div className="col-lg-3">
+                <div className="documentsrequired one">
+                  <div className="">
+                    <img
+                      src="https://ruloans-bucket.s3.amazonaws.com/b2c/shared/images/become-a-partner/eligibility-professional-qualifications-icon.webp"
+                      alt="Contact Number"
+                    />
+                  </div>
+                  <p>Professional Qualifications</p>
+                  <h2>
+                    Whether you are a working professional, or a business owner, you
+                    are welcome to register as a Navmi Finserrv Loan DSA Franchise
+                  </h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section className="creditandloan">
+          <div>
+            <div className="maincom text-center mb-5">
+              <h2>Why Partner with Navmi Finserrv? - Benefits and Perks</h2>
+            </div>
+            <div className="container">
+              <p>
+                Partnering with Navmi Finserrv gives you the tools, support, and
+                opportunities to grow in the financial services industry while
+                enjoying significant rewards. Start your journey today and unlock your
+                potential!
+              </p>
+              <div
+                className="mb-4 mt-5 row"
+                style={{ justifyContent: "space-evenly" }}
+              >
+                <div className="col-lg-4">
+                  <div className="whoisdsa_whoisdsa">
+                    <h5>Wide Range of Financial Products</h5>
+                    <h6>
+                      Navmi Finserrv partners with over 40+ leading banks and NBFCs,
+                      giving you access to a diverse range of loan products, including
+                      Home Loans, Business Loans, Personal Loans, Car Loans, and more,
+                      allowing you to meet the unique needs of clients.
+                    </h6>
+                  </div>
+                </div>
+                <div className="col-lg-4">
+                  <div className="whoisdsa_whoisdsa">
+                    <h5>Attractive Commissions</h5>
+                    <h6>
+                      Earn competitive and lucrative commissions on each successful
+                      loan transaction, with the potential for unlimited earnings
+                      based on your performance.
+                    </h6>
+                  </div>
+                </div>
+                <div className="col-lg-4">
+                  <div className="whoisdsa_whoisdsa">
+                    <h5>Seamless Onboarding Process</h5>
+                    <h6>
+                      The simple and smooth registration process, combined with
+                      comprehensive training, ensures you are well-equipped to begin
+                      your journey with confidence.
+                    </h6>
+                  </div>
+                </div>
+                <div className="col-lg-4">
+                  <div className="whoisdsa_whoisdsa">
+                    <h5>Advanced Sales Tools</h5>
+                    <h6>
+                      Gain access to advanced tools like the EMI Calculator, loan
+                      calculators, and a user-friendly dashboard to track leads,
+                      sales, and commissions, helping you serve clients efficiently.
+                    </h6>
+                  </div>
+                </div>
+                <div className="col-lg-4">
+                  <div className="whoisdsa_whoisdsa">
+                    <h5>Proven Support System</h5>
+                    <h6>
+                      With over 15 years of experience, Navmi Finserrv offers
+                      continuous support, guidance, and marketing resources to help
+                      you succeed as a DSA Partner or Franchise.
+                    </h6>
+                  </div>
+                </div>
+                <div className="col-lg-4">
+                  <div className="whoisdsa_whoisdsa">
+                    <h5>Build Your Own Business</h5>
+                    <h6>
+                      Enjoy the flexibility of being your own boss, operating
+                      independently, and building your own customer base while
+                      benefiting from Navmi Finserrv’s brand reputation and resources.
+                    </h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section className="sasas">
+          <div>
+            <div className="container">
+              <h3 className="faqlkk">FAQs</h3>
+              <div className="Newfaqs col-lg-12">
+                <div className="accordion">
+                  <div className="accordion-item">
+                    <h2 className="accordion-header">
+                      <button
+                        type="button"
+                        aria-expanded="true"
+                        className="accordion-button"
+                      >
+                        1. Can I get an in-principle approval and actually avail of
+                        the loan later?
+                      </button>
+                    </h2>
+                    <div className="accordion-collapse collapse show">
+                      <div className="accordion-body">
+                        Yes you can get in-principle and avail it within 90 days.
+                      </div>
+                    </div>
+                  </div>
+                  <div className="accordion-item">
+                    <h2 className="accordion-header">
+                      <button
+                        type="button"
+                        aria-expanded="false"
+                        className="accordion-button collapsed"
+                      >
+                        2. How long is this approval valid?
+                      </button>
+                    </h2>
+                    <div className="accordion-collapse collapse">
+                      <div className="accordion-body">
+                        Approval is valid for 90 days.
+                      </div>
+                    </div>
+                  </div>
+                  <div className="accordion-item">
+                    <h2 className="accordion-header">
+                      <button
+                        type="button"
+                        aria-expanded="false"
+                        className="accordion-button collapsed"
+                      >
+                        3. What are the documents required?
+                      </button>
+                    </h2>
+                    <div className="accordion-collapse collapse">
+                      <div className="accordion-body">
+                        Photo, Pan Card, current residence proof and income proof.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </>
 
-      {/* Additional sections continue here */}
     </div>
   );
 };

@@ -74,23 +74,23 @@ const EMICalculator = () => {
   // Generate repayment schedule
   const generateRepaymentSchedule = (principalAmount, rate, tenure, tenureInMonths) => {
     const monthlyRate = rate / 12 / 100;
-    const emi = (principalAmount * monthlyRate * Math.pow(1 + monthlyRate, tenureInMonths)) / 
-               (Math.pow(1 + monthlyRate, tenureInMonths) - 1);
-    
+    const emi = (principalAmount * monthlyRate * Math.pow(1 + monthlyRate, tenureInMonths)) /
+      (Math.pow(1 + monthlyRate, tenureInMonths) - 1);
+
     let balance = principalAmount;
     let monthlySchedule = [];
     let yearlyData = [];
     let yearlyTotalPrincipal = 0;
     let yearlyTotalInterest = 0;
-    
+
     for (let month = 1; month <= tenureInMonths; month++) {
       const interestPayment = balance * monthlyRate;
       const principalPayment = emi - interestPayment;
       balance = balance - principalPayment;
-      
+
       // Ensure balance doesn't go below zero due to rounding errors
       if (balance < 0) balance = 0;
-      
+
       // Add to monthly schedule
       monthlySchedule.push({
         month,
@@ -99,11 +99,11 @@ const EMICalculator = () => {
         interest: Math.round(interestPayment),
         balance: Math.round(balance)
       });
-      
+
       // Accumulate for yearly data
       yearlyTotalPrincipal += principalPayment;
       yearlyTotalInterest += interestPayment;
-      
+
       // If it's the end of a year or the last month, add to yearly data
       if (month % 12 === 0 || month === tenureInMonths) {
         const yearNumber = Math.ceil(month / 12);
@@ -114,13 +114,13 @@ const EMICalculator = () => {
           totalPayment: Math.round(yearlyTotalPrincipal + yearlyTotalInterest),
           remainingBalance: Math.round(balance)
         });
-        
+
         // Reset yearly accumulators
         yearlyTotalPrincipal = 0;
         yearlyTotalInterest = 0;
       }
     }
-    
+
     return { monthly: monthlySchedule, yearly: yearlyData };
   };
 
@@ -291,75 +291,73 @@ const EMICalculator = () => {
             </div>
 
             {/* Repayment Schedule Section */}
-            <Card className="mt-4">
-              <Card.Header as="h4" className="text-center">Repayment Schedule</Card.Header>
-              <Card.Body>
-                <Tab.Container defaultActiveKey="monthly">
-                  <Nav variant="tabs" className="mb-3">
-                    <Nav.Item>
-                      <Nav.Link eventKey="monthly">Monthly Schedule</Nav.Link>
-                    </Nav.Item>
-                    <Nav.Item>
-                      <Nav.Link eventKey="yearly">Yearly Schedule</Nav.Link>
-                    </Nav.Item>
-                  </Nav>
-                  <Tab.Content>
-                    <Tab.Pane eventKey="monthly">
-                      <div className="table-responsive">
-                        <Table striped bordered hover>
-                          <thead>
-                            <tr>
-                              <th>Month</th>
-                              <th>EMI</th>
-                              <th>Principal</th>
-                              <th>Interest</th>
-                              <th>Balance</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {repaymentSchedule.monthly.map((item) => (
-                              <tr key={`month-${item.month}`}>
-                                <td>{item.month}</td>
-                                <td>{formatIndianRupee(item.emi)}</td>
-                                <td>{formatIndianRupee(item.principal)}</td>
-                                <td>{formatIndianRupee(item.interest)}</td>
-                                <td>{formatIndianRupee(item.balance)}</td>
+            <div class="loan-tenure-summary">
+              <Card className="mt-4">
+                <Card.Header as="h4" className="text-center">Repayment Schedule</Card.Header>
+                <Card.Body>
+                  <Tab.Container defaultActiveKey="monthly">
+                    <Nav variant="tabs" className="mb-3">
+                      <Nav.Item>
+                        <Nav.Link eventKey="monthly">Monthly Schedule</Nav.Link>
+                      </Nav.Item>
+                      <Nav.Item>
+                        <Nav.Link eventKey="yearly">Yearly Schedule</Nav.Link>
+                      </Nav.Item>
+                    </Nav>
+                    <Tab.Content>
+                      <Tab.Pane eventKey="monthly">
+                        <div className="table-responsive">
+                          <Table className='mt-4' striped>
+                            <thead>
+                              <tr>
+                                <th>Month</th>
+                                <th>Principal</th>
+                                <th>Interest</th>
+                                <th>Balance</th>
                               </tr>
-                            ))}
-                          </tbody>
-                        </Table>
-                      </div>
-                    </Tab.Pane>
-                    <Tab.Pane eventKey="yearly">
-                      <div className="table-responsive">
-                        <Table striped bordered hover>
-                          <thead>
-                            <tr>
-                              <th>Year</th>
-                              <th>Principal Paid</th>
-                              <th>Interest Paid</th>
-                              <th>Total Payment</th>
-                              <th>Balance</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {repaymentSchedule.yearly.map((item) => (
-                              <tr key={`year-${item.year}`}>
-                                <td>{item.year}</td>
-                                <td>{formatIndianRupee(item.principalPaid)}</td>
-                                <td>{formatIndianRupee(item.interestPaid)}</td>
-                                <td>{formatIndianRupee(item.totalPayment)}</td>
-                                <td>{formatIndianRupee(item.remainingBalance)}</td>
+                            </thead>
+                            <tbody>
+                              {repaymentSchedule.monthly.map((item) => (
+                                <tr key={`month-${item.month}`}>
+                                  <td>{item.month}</td>
+                                  <td>{formatIndianRupee(item.principal)}</td>
+                                  <td>{formatIndianRupee(item.interest)}</td>
+                                  <td>{formatIndianRupee(item.balance)}</td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </Table>
+                        </div>
+                      </Tab.Pane>
+                      <Tab.Pane eventKey="yearly">
+                        <div className="table-responsive">
+                          <Table className='mt-4' striped>
+                            <thead>
+                              <tr>
+                                <th>Year</th>
+                                <th>Principal</th>
+                                <th>Interest</th>
+                                <th>Balance</th>
                               </tr>
-                            ))}
-                          </tbody>
-                        </Table>
-                      </div>
-                    </Tab.Pane>
-                  </Tab.Content>
-                </Tab.Container>
-              </Card.Body>
-            </Card>
+                            </thead>
+                            <tbody>
+                              {repaymentSchedule.yearly.map((item) => (
+                                <tr key={`year-${item.year}`}>
+                                  <td>{item.year}</td>
+                                  <td>{formatIndianRupee(item.principalPaid)}</td>
+                                  <td>{formatIndianRupee(item.interestPaid)}</td>
+                                  <td>{formatIndianRupee(item.remainingBalance)}</td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </Table>
+                        </div>
+                      </Tab.Pane>
+                    </Tab.Content>
+                  </Tab.Container>
+                </Card.Body>
+              </Card>
+            </div>
           </>
         )}
       </Container>
