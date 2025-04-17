@@ -8,7 +8,7 @@ const ReviewsData = () => {
             <ApplyLoan/>
             <section className="sidecontent">
                 <h3>Reviews</h3>
-                <p style={{ marginTop: '60px' }}>Lorem Ipsum is simply dummy text of the printing and typesetting industr. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+                <p style={{ marginTop: '60px' }}></p>
                 <Row>
                     <Col lg={4} md={12} sm={12} className="mb-5">
                         <div className="profiledata">

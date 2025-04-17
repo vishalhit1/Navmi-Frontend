@@ -133,7 +133,7 @@ const PrincipalCalculator = () => {
     let yearlyPrincipal = 0;
     let yearlyInterest = 0;
     let openingBalanceForYear = parseFloat(monthlySchedule[0].openingBalance);
-    
+
     monthlySchedule.forEach((month, index) => {
       yearlyEmi += parseFloat(month.emi);
       yearlyPrincipal += parseFloat(month.principalPayment);
@@ -142,7 +142,7 @@ const PrincipalCalculator = () => {
       // Check if it's the last month of the year or the last month overall
       if ((index + 1) % 12 === 0 || index === monthlySchedule.length - 1) {
         const closingBalanceForYear = parseFloat(month.closingBalance);
-        
+
         yearlyData.push({
           year: currentYear,
           openingBalance: openingBalanceForYear.toFixed(2),
@@ -175,7 +175,7 @@ const PrincipalCalculator = () => {
         <Breadcrumb.Item href="/emi-calculator-list">Emi Calculator List</Breadcrumb.Item>
         <Breadcrumb.Item active>Calculate Principal</Breadcrumb.Item>
       </Breadcrumb>
-      
+
       <Container className="mt-5">
         <Row style={{ justifyContent: 'center' }}>
           <Col lg={6}>
@@ -289,80 +289,74 @@ const PrincipalCalculator = () => {
         )}
 
         {showSchedule && (
-          <div className="repayment-schedule mt-4">
-            <Card>
-              <Card.Header as="h4" className="text-center">Repayment Schedule</Card.Header>
-              <Card.Body>
-                <Tab.Container defaultActiveKey="monthly">
-                  <Nav variant="tabs" className="mb-3">
-                    <Nav.Item>
-                      <Nav.Link eventKey="monthly">Monthly Schedule</Nav.Link>
-                    </Nav.Item>
-                    <Nav.Item>
-                      <Nav.Link eventKey="yearly">Yearly Schedule</Nav.Link>
-                    </Nav.Item>
-                  </Nav>
-                  <Tab.Content>
-                    <Tab.Pane eventKey="monthly">
-                      <div className="table-responsive">
-                        <Table striped bordered hover>
-                          <thead>
-                            <tr>
-                              <th>Month</th>
-                              <th>Opening Balance</th>
-                              <th>EMI</th>
-                              <th>Principal</th>
-                              <th>Interest</th>
-                              <th>Closing Balance</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {monthlySchedule.map((month) => (
-                              <tr key={`month-${month.month}`}>
-                                <td>{month.month}</td>
-                                <td>{formatRupee(month.openingBalance)}</td>
-                                <td>{formatRupee(month.emi)}</td>
-                                <td>{formatRupee(month.principalPayment)}</td>
-                                <td>{formatRupee(month.interestPayment)}</td>
-                                <td>{formatRupee(month.closingBalance)}</td>
+          <div class="loan-tenure-summary">
+            <div className="repayment-schedule mt-4">
+              <Card>
+                <Card.Header as="h4" className="text-center">Repayment Schedule</Card.Header>
+                <Card.Body>
+                  <Tab.Container defaultActiveKey="monthly">
+                    <Nav variant="tabs" className="mb-3">
+                      <Nav.Item>
+                        <Nav.Link eventKey="monthly">Monthly Schedule</Nav.Link>
+                      </Nav.Item>
+                      <Nav.Item>
+                        <Nav.Link eventKey="yearly">Yearly Schedule</Nav.Link>
+                      </Nav.Item>
+                    </Nav>
+                    <Tab.Content>
+                      <Tab.Pane eventKey="monthly">
+                        <div className="table-responsive">
+                          <Table className='mt-4' striped>
+                            <thead>
+                              <tr>
+                                <th>Month</th>
+                                <th>Principal</th>
+                                <th>Interest</th>
+                                <th>Closing Balance</th>
                               </tr>
-                            ))}
-                          </tbody>
-                        </Table>
-                      </div>
-                    </Tab.Pane>
-                    <Tab.Pane eventKey="yearly">
-                      <div className="table-responsive">
-                        <Table striped bordered hover>
-                          <thead>
-                            <tr>
-                              <th>Year</th>
-                              <th>Opening Balance</th>
-                              <th>Total EMI Paid</th>
-                              <th>Total Principal Paid</th>
-                              <th>Total Interest Paid</th>
-                              <th>Closing Balance</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {yearlySchedule.map((year) => (
-                              <tr key={`year-${year.year}`}>
-                                <td>{year.year}</td>
-                                <td>{formatRupee(year.openingBalance)}</td>
-                                <td>{formatRupee(year.yearlyEmi)}</td>
-                                <td>{formatRupee(year.yearlyPrincipal)}</td>
-                                <td>{formatRupee(year.yearlyInterest)}</td>
-                                <td>{formatRupee(year.closingBalance)}</td>
+                            </thead>
+                            <tbody>
+                              {monthlySchedule.map((month) => (
+                                <tr key={`month-${month.month}`}>
+                                  <td>{month.month}</td>
+                                  <td>{formatRupee(month.principalPayment)}</td>
+                                  <td>{formatRupee(month.interestPayment)}</td>
+                                  <td>{formatRupee(month.closingBalance)}</td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </Table>
+                        </div>
+                      </Tab.Pane>
+                      <Tab.Pane eventKey="yearly">
+                        <div className="table-responsive">
+                          <Table className='mt-4' striped>
+                            <thead>
+                              <tr>
+                                <th>Year</th>
+                                <th>Principal</th>
+                                <th>Interest</th>
+                                <th>Closing Balance</th>
                               </tr>
-                            ))}
-                          </tbody>
-                        </Table>
-                      </div>
-                    </Tab.Pane>
-                  </Tab.Content>
-                </Tab.Container>
-              </Card.Body>
-            </Card>
+                            </thead>
+                            <tbody>
+                              {yearlySchedule.map((year) => (
+                                <tr key={`year-${year.year}`}>
+                                  <td>{year.year}</td>
+                                  <td>{formatRupee(year.yearlyPrincipal)}</td>
+                                  <td>{formatRupee(year.yearlyInterest)}</td>
+                                  <td>{formatRupee(year.closingBalance)}</td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </Table>
+                        </div>
+                      </Tab.Pane>
+                    </Tab.Content>
+                  </Tab.Container>
+                </Card.Body>
+              </Card>
+            </div>
           </div>
         )}
       </Container>

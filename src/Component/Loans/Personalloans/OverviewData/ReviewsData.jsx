@@ -15,12 +15,12 @@ const ReviewsData = () => {
             <ApplyLoan/>
             <section className="sidecontent">
                 <h3>Reviews</h3>
-                <p style={{ marginTop: '60px' }}>Lorem Ipsum is simply dummy text of the printing and typesetting industr. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+                <p style={{ marginTop: '60px' }}></p>
                 <Row>
                     <Col lg={4} md={12} sm={12} className="mb-5">
                         <div className="profiledata">
                             <img style={{ marginLeft: 'auto', marginRight: 'auto' }} src={mens1} alt="" />
-                            <h1 className="mt-3 mb-3">Shahin Umani</h1>
+                            <h1 className="mt-3 mb-3">Shahin</h1>
                         </div>
                         <div className="testi" style={{ margin: '0px', marginBottom: '50px', position: 'relative' }}>
                             <div className="starss">
@@ -37,7 +37,7 @@ const ReviewsData = () => {
                     <Col lg={4} md={12} sm={12} className="mb-5">
                         <div className="profiledata">
                             <img style={{ marginLeft: 'auto', marginRight: 'auto' }} src={womens} alt="" />
-                            <h1 className="mt-3 mb-3">Soniya Ajani</h1>
+                            <h1 className="mt-3 mb-3">Soniya</h1>
                         </div>
                         <div className="testi" style={{ margin: '0px', marginBottom: '50px', position: 'relative' }}>
                             <div className="starss">
@@ -55,7 +55,7 @@ const ReviewsData = () => {
                     <Col lg={4} md={12} sm={12} className="mb-5">
                         <div className="profiledata">
                             <img style={{ marginLeft: 'auto', marginRight: 'auto' }} src={mens2} alt="" />
-                            <h1 className="mt-3 mb-3">Abhishek Goud</h1>
+                            <h1 className="mt-3 mb-3">Abhishek</h1>
                         </div>
                         <div className="testi" style={{ margin: '0px', marginBottom: '50px', position: 'relative' }}>
                             <div className="starss">
@@ -73,7 +73,7 @@ const ReviewsData = () => {
                     <Col lg={4} md={12} sm={12} className="mb-5">
                         <div className="profiledata">
                             <img style={{ marginLeft: 'auto', marginRight: 'auto' }} src={mens3} alt="" />
-                            <h1 className="mt-3 mb-3">Suni Augustain</h1>
+                            <h1 className="mt-3 mb-3">Suni</h1>
                         </div>
                         <div className="testi" style={{ margin: '0px', marginBottom: '50px', position: 'relative' }}>
                             <div className="starss">
@@ -91,7 +91,7 @@ const ReviewsData = () => {
                     <Col lg={4} md={12} sm={12} className="mb-5">
                         <div className="profiledata">
                             <img style={{ marginLeft: 'auto', marginRight: 'auto' }} src={womens1} alt="" />
-                            <h1 className="mt-3 mb-3">Reshma Jadhav</h1>
+                            <h1 className="mt-3 mb-3">Reshma</h1>
                         </div>
                         <div className="testi" style={{ margin: '0px', marginBottom: '50px', position: 'relative' }}>
                             <div className="starss">
@@ -109,7 +109,7 @@ const ReviewsData = () => {
                     <Col lg={4} md={12} sm={12} className="mb-5">
                         <div className="profiledata">
                             <img style={{ marginLeft: 'auto', marginRight: 'auto' }} src={mens4} alt="" />
-                            <h1 className="mt-3 mb-3">Sundarraju Nagapalli</h1>
+                            <h1 className="mt-3 mb-3">Sundarraju</h1>
                         </div>
                         <div className="testi" style={{ margin: '0px', marginBottom: '50px', position: 'relative' }}>
                             <div className="starss">
@@ -127,7 +127,7 @@ const ReviewsData = () => {
                     <Col lg={4} md={12} sm={12} className="mb-5">
                         <div className="profiledata">
                             <img style={{ marginLeft: 'auto', marginRight: 'auto' }} src={mens5} alt="" />
-                            <h1 className="mt-3 mb-3">Deepak Jain</h1>
+                            <h1 className="mt-3 mb-3">Deepak</h1>
                         </div>
                         <div className="testi" style={{ margin: '0px', marginBottom: '50px', position: 'relative' }}>
                             <div className="starss">
@@ -145,7 +145,7 @@ const ReviewsData = () => {
                     <Col lg={4} md={12} sm={12} className="mb-5">
                         <div className="profiledata">
                             <img style={{ marginLeft: 'auto', marginRight: 'auto' }} src={mens6} alt="" />
-                            <h1 className="mt-3 mb-3">Vinod Pardeshi</h1>
+                            <h1 className="mt-3 mb-3">Vinod</h1>
                         </div>
                         <div className="testi" style={{ margin: '0px', marginBottom: '50px', position: 'relative' }}>
                             <div className="starss">

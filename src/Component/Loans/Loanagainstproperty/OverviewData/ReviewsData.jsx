@@ -16,7 +16,7 @@ const ReviewsData = () => {
                     <Col lg={4} md={12} sm={12} className="mb-5">
                         <div className="profiledata">
                             <img style={{ marginLeft: 'auto', marginRight: 'auto' }} src={mens} alt="" />
-                            <h1 className="mt-3 mb-3">Jatin Gandhi</h1>
+                            <h1 className="mt-3 mb-3">Jatin</h1>
                         </div>
                         <div className="testi" style={{ margin: '0px', marginBottom: '50px', position: 'relative' }}>
                             <div className="starss">
@@ -36,7 +36,7 @@ const ReviewsData = () => {
                     <Col lg={4} md={12} sm={12} className="mb-5">
                         <div className="profiledata">
                             <img style={{ marginLeft: 'auto', marginRight: 'auto' }} src={mens1} alt="" />
-                            <h1 className="mt-3 mb-3">Firoz Ansari </h1>
+                            <h1 className="mt-3 mb-3">Firoz </h1>
                         </div>
                         <div className="testi" style={{ margin: '0px', marginBottom: '50px', position: 'relative' }}>
                             <div className="starss">
@@ -56,7 +56,7 @@ const ReviewsData = () => {
                     <Col lg={4} md={12} sm={12} className="mb-5">
                         <div className="profiledata">
                             <img style={{ marginLeft: 'auto', marginRight: 'auto' }} src={mens2} alt="" />
-                            <h1 className="mt-3 mb-3">Anand Giri </h1>
+                            <h1 className="mt-3 mb-3">Anand </h1>
                         </div>
                         <div className="testi" style={{ margin: '0px', marginBottom: '50px', position: 'relative' }}>
                             <div className="starss">
@@ -77,7 +77,7 @@ const ReviewsData = () => {
                     <Col lg={4} md={12} sm={12} className="mb-5">
                         <div className="profiledata">
                             <img style={{ marginLeft: 'auto', marginRight: 'auto' }} src={womens} alt="" />
-                            <h1 className="mt-3 mb-3">Anita Mayekar</h1>
+                            <h1 className="mt-3 mb-3">Anita</h1>
                         </div>
                         <div className="testi" style={{ margin: '0px', marginBottom: '50px', position: 'relative' }}>
                             <div className="starss">

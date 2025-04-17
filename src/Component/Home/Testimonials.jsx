@@ -51,13 +51,12 @@ const Testimonials = () => {
             <section className="testimonails">
                 <div className="maincom text-center">
                     <h2>What They’re Talking?</h2>
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestias,<br /> omnis. Amet repellat, sit necessitatibus.</p>
                 </div>
                 <Slider className="container" {...settings}>
                     <div>
                         <div className="profiledata">
                             <img style={{ marginLeft: 'auto', marginRight: 'auto' }} src={mens} alt="" />
-                            <h3>Jatin Gandhi</h3>
+                            <h3>Jatin</h3>
                         </div>
                         <div className="testi">
                             <div className="starss">
@@ -73,7 +72,7 @@ const Testimonials = () => {
                     <div>
                         <div className="profiledata">
                             <img style={{ marginLeft: 'auto', marginRight: 'auto' }} src={mens1} alt="" />
-                            <h3>Firoz Ansari</h3>
+                            <h3>Firoz</h3>
                         </div>
                         <div className="testi">
                             <div className="starss">
@@ -89,7 +88,7 @@ const Testimonials = () => {
                     <div>
                         <div className="profiledata">
                             <img style={{ marginLeft: 'auto', marginRight: 'auto' }} src={mens2} alt="" />
-                            <h3>Anand Giri</h3>
+                            <h3>Anand</h3>
                         </div>
                         <div className="testi">
                             <div className="starss">
@@ -105,7 +104,7 @@ const Testimonials = () => {
                     <div>
                         <div className="profiledata">
                             <img style={{ marginLeft: 'auto', marginRight: 'auto' }} src={mens3} alt="" />
-                            <h3>Anita Mayekar</h3>
+                            <h3>Anita</h3>
                         </div>
                         <div className="testi">
                             <div className="starss">
@@ -121,7 +120,7 @@ const Testimonials = () => {
                     <div>
                         <div className="profiledata">
                             <img style={{ marginLeft: 'auto', marginRight: 'auto' }} src={mens4} alt="" />
-                            <h3>DhanRaj Vora</h3>
+                            <h3>DhanRaj</h3>
                         </div>
                         <div className="testi">
                             <div className="starss">
@@ -137,7 +136,7 @@ const Testimonials = () => {
                     <div>
                         <div className="profiledata">
                             <img style={{ marginLeft: 'auto', marginRight: 'auto' }} src={mens5} alt="" />
-                            <h3>Vishal Dodia</h3>
+                            <h3>Vishal</h3>
                         </div>
                         <div className="testi">
                             <div className="starss">
@@ -153,7 +152,7 @@ const Testimonials = () => {
                     <div>
                         <div className="profiledata">
                             <img style={{ marginLeft: 'auto', marginRight: 'auto' }} src={mens7} alt="" />
-                            <h3>Sanjit Paul</h3>
+                            <h3>Sanjit</h3>
                         </div>
                         <div className="testi">
                             <div className="starss">
@@ -169,7 +168,7 @@ const Testimonials = () => {
                     <div>
                         <div className="profiledata">
                             <img style={{ marginLeft: 'auto', marginRight: 'auto' }} src={mens} alt="" />
-                            <h3>DhanRaj Khatri</h3>
+                            <h3>DhanRaj</h3>
                         </div>
                         <div className="testi">
                             <div className="starss">
@@ -185,7 +184,7 @@ const Testimonials = () => {
                     <div>
                         <div className="profiledata">
                             <img style={{ marginLeft: 'auto', marginRight: 'auto' }} src={mens1} alt="" />
-                            <h3>Haresh Lalwani</h3>
+                            <h3>Haresh</h3>
                         </div>
                         <div className="testi">
                             <div className="starss">
@@ -201,7 +200,7 @@ const Testimonials = () => {
                     <div>
                         <div className="profiledata">
                             <img style={{ marginLeft: 'auto', marginRight: 'auto' }} src={mens2} alt="" />
-                            <h3>Surendra Shukla</h3>
+                            <h3>Surendra</h3>
                         </div>
                         <div className="testi">
                             <div className="starss">
@@ -217,7 +216,7 @@ const Testimonials = () => {
                     <div>
                         <div className="profiledata">
                             <img style={{ marginLeft: 'auto', marginRight: 'auto' }} src={mens3}alt="" />
-                            <h3>Balveer Singh</h3>
+                            <h3>Balveer</h3>
                         </div>
                         <div className="testi">
                             <div className="starss">

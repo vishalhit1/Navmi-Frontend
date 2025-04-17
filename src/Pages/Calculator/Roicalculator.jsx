@@ -384,6 +384,7 @@ const RoiCalculator = () => {
 
         {/* Repayment Schedule Section */}
         {showSchedule && (
+           <div class="loan-tenure-summary">
           <div className="repayment-schedule mt-5">
             <Card>
               <Card.Header as="h4" className="text-center">Repayment Schedule</Card.Header>
@@ -400,7 +401,7 @@ const RoiCalculator = () => {
                   <Tab.Content>
                     <Tab.Pane eventKey="monthly">
                       <div className="table-responsive">
-                        <Table striped bordered hover>
+                        <Table className='mt-4' striped>
                           <thead>
                             <tr>
                               <th>Month</th>
@@ -430,7 +431,7 @@ const RoiCalculator = () => {
                     </Tab.Pane>
                     <Tab.Pane eventKey="yearly">
                       <div className="table-responsive">
-                        <Table striped bordered hover>
+                        <Table className='mt-4' striped>
                           <thead>
                             <tr>
                               <th>Year</th>
@@ -458,6 +459,7 @@ const RoiCalculator = () => {
                 </Tab.Container>
               </Card.Body>
             </Card>
+          </div>
           </div>
         )}
       </Container>
