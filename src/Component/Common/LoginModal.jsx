@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Navbar, Container, Nav, NavDropdown, Offcanvas, Button, Form, Modal, Row, Col } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import Creditscore from '../../assets/login.png';
-import logo from '../../assets/logo.svg';
 import Swal from 'sweetalert2';
 
-const LoginModal = ({ handleClose2 }) => {
+const LoginModal = ({ handleClose2, onLoginSuccess }) => {
 
     //login states
     const [phoneno, setPhoneno] = useState("");
@@ -94,15 +92,21 @@ const LoginModal = ({ handleClose2 }) => {
                             icon: 'success',
                             title: 'Login Successful',
                             text: 'You are now logged in.',
-                            confirmButtonColor: '#DA3731'
+                            confirmButtonColor: '#DA3731',
+                            timer: 1500,
+                            showConfirmButton: false
                         }).then(() => {
                             // Store the token in sessionStorage
                             sessionStorage.setItem("token", JSON.stringify(data.token));
                             
-                            // Close the modal
-                            handleClose2();
-                            
-                            // Removed window.location.reload() to prevent page refresh
+                            // If onLoginSuccess callback exists, call it
+                            // This will trigger the opening of the Life Insurance Modal
+                            if (onLoginSuccess && typeof onLoginSuccess === 'function') {
+                                onLoginSuccess();
+                            } else {
+                                // Otherwise just close the login modal
+                                handleClose2();
+                            }
                         });
                     } else {
                         Swal.fire({

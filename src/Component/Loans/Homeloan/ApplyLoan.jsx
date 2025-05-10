@@ -61,7 +61,12 @@ const ApplyLoan = () => {
         }
     }, [formData.loanamount]);
 
-
+    // Function to handle successful login
+    const handleLoginSuccess = () => {
+        handleClose2(); // Close login modal
+        setShow(true);  // Open the insurance modal
+    }
+    
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData({
@@ -879,7 +884,7 @@ const ApplyLoan = () => {
                 <Modal.Header closeButton>
                 </Modal.Header>
                 <Modal.Body>
-                    <LoginModal handleClose2={handleClose2} />
+                    <LoginModal handleClose2={handleClose2} onLoginSuccess={handleLoginSuccess} />
                 </Modal.Body>
             </Modal>
         </>

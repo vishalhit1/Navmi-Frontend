@@ -25,21 +25,16 @@ const Header = () => {
         }
     }
     const sessionStoragetoken = sessionStorage.getItem('token');
-    const handleClose1 = () => setShow1(false);
-    const handleShow1 = () => setShow1(true);
-
-    //login states
-    const [phoneno, setPhoneno] = useState("");
-    const [otp, setOtp] = useState("");
-    const [otpSent, setOtpSent] = useState(false);
-    const [otploader, setOtploader] = useState(false)
-    const [resendDisabled, setResendDisabled] = useState(false);
-    const [timer, setTimer] = useState(60);
-
 
     const isActive = (path) => {
         return location.pathname === path ? { fontSize: '16px', fontWeight: '600', color: '#DA3731' } : {};
     };
+
+    // Function to handle successful login
+    const handleLoginSuccess = () => {
+        handleClose2(); // Close login modal
+        setShow(true);  // Open the insurance modal
+    }
 
     // Form states
     const [loantype, setLoantype] = useState("");
@@ -418,7 +413,7 @@ const Header = () => {
                 <Modal.Header closeButton>
                 </Modal.Header>
                 <Modal.Body>
-                    <LoginModal handleClose2={handleClose2} />
+                    <LoginModal handleClose2={handleClose2} onLoginSuccess={handleLoginSuccess} />
                 </Modal.Body>
             </Modal>
         </div>

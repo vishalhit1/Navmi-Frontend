@@ -19,6 +19,7 @@ const ApplyLoan = () => {
         }
     }
     const sessionStoragetoken = sessionStorage.getItem('token');
+
     const [loantype, setLoantype] = useState('health'); // Set default loan type to avoid validation issues
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -29,6 +30,12 @@ const ApplyLoan = () => {
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [shouldSubmit, setShouldSubmit] = useState(false);
+
+     // Function to handle successful login
+     const handleLoginSuccess = () => {
+        handleClose2(); // Close login modal
+        setShow(true);  // Open the insurance modal
+    }
 
     useEffect(() => {
         // Check if toploc is defined before calling it
@@ -319,7 +326,7 @@ const ApplyLoan = () => {
                 <Modal.Header closeButton>
                 </Modal.Header>
                 <Modal.Body>
-                  <LoginModal handleClose2={handleClose2}/>
+                <LoginModal handleClose2={handleClose2} onLoginSuccess={handleLoginSuccess} />
                 </Modal.Body>
             </Modal>
         </>
