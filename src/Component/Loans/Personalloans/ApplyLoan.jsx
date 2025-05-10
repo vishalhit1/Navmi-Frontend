@@ -18,8 +18,10 @@ const ApplyLoan = () => {
         }
     }
     const sessionStoragetoken = sessionStorage.getItem('token');
-    
+
+
     // Form fields
+    const [emi, setEmi] = useState('');
     const [fullName, setFullName] = useState('');
     const [loanAmount, setLoanAmount] = useState('');
     const [netSalary, setNetSalary] = useState('');
@@ -29,7 +31,7 @@ const ApplyLoan = () => {
     const [loanDate, setLoanDate] = useState('');
     const [residenceType, setResidenceType] = useState('');
     const [panNo, setPanNo] = useState('');
-    const [email, setEmail] = useState('');
+    const [emailId, setEmailId] = useState('');
     const [existingEmi, setExistingEmi] = useState('');
     const [loanPurpose, setLoanPurpose] = useState('');
 
@@ -64,9 +66,9 @@ const ApplyLoan = () => {
 
     const handleEmailChange = (e) => {
         const value = e.target.value;
-        setEmail(value);
+        setEmailId(value);
         if (/\S+@\S+\.\S+/.test(value)) {
-            setErrors(prev => ({ ...prev, email: undefined }));
+            setErrors(prev => ({ ...prev, emailId: undefined }));
         }
     };
 
@@ -78,6 +80,21 @@ const ApplyLoan = () => {
             setErrors(prev => ({ ...prev, panNo: undefined }));
         }
     };
+
+    useEffect(() => {
+        const principal = parseFloat(loanAmount);
+        const annualInterestRate = 10.99;
+        const tenureInMonths = 60;
+
+        if (!isNaN(principal) && principal > 0) {
+            const monthlyInterestRate = annualInterestRate / 12 / 100;
+            const emiCalculated = (principal * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, tenureInMonths)) /
+                (Math.pow(1 + monthlyInterestRate, tenureInMonths) - 1);
+            setEmi(emiCalculated.toFixed(2));
+        } else {
+            setEmi('');
+        }
+    }, [loanAmount]);
 
     // Form validation function
     const validateForm = () => {
@@ -118,7 +135,7 @@ const ApplyLoan = () => {
         }
 
         if (!loanDate) {
-            tempErrors.loanDate = "Loan Date is required";
+            tempErrors.loanDate = "Date of birth is required";
             isValid = false;
         }
 
@@ -135,11 +152,11 @@ const ApplyLoan = () => {
             isValid = false;
         }
 
-        if (!email) {
-            tempErrors.email = "Email is required";
+        if (!emailId) {
+            tempErrors.emailId = "Email is required";
             isValid = false;
-        } else if (!/\S+@\S+\.\S+/.test(email)) {
-            tempErrors.email = "Email address is invalid";
+        } else if (!/\S+@\S+\.\S+/.test(emailId)) {
+            tempErrors.emailId = "Email address is invalid";
             isValid = false;
         }
 
@@ -187,7 +204,7 @@ const ApplyLoan = () => {
         setLoanDate('');
         setResidenceType('');
         setPanNo('');
-        setEmail('');
+        setEmailId('');
         setExistingEmi('');
         setLoanPurpose('');
         setErrors({});
@@ -221,7 +238,7 @@ const ApplyLoan = () => {
                     loanDate,
                     residenceType,
                     panNo,
-                    email,
+                    emailId,
                     existingEmi,
                     loanPurpose
                 });
@@ -257,12 +274,11 @@ const ApplyLoan = () => {
         };
 
         sendLoanApplication();
-    }, [shouldSubmit, fullName, loanAmount, netSalary, companyName, currentCompanyExp, totalExp, loanDate, residenceType, panNo, email, existingEmi, loanPurpose]);
+    }, [shouldSubmit, fullName, loanAmount, netSalary, companyName, currentCompanyExp, totalExp, loanDate, residenceType, panNo, emailId, existingEmi, loanPurpose]);
 
     return (
         <>
             <button onClick={handleShow} className="applynow blink">Apply Now</button>
-
             <Modal show={show} onHide={handleClose} centered backdrop="static"
                 keyboard={false} size="xl">
                 <Modal.Header
@@ -276,7 +292,7 @@ const ApplyLoan = () => {
                                 letterSpacing: "0em",
                                 textAlign: "center",
                                 marginBottom: "40px",
-                                color:'#283E87',
+                                color: '#283E87',
                             }}
                         >
                             Apply Now
@@ -322,26 +338,34 @@ const ApplyLoan = () => {
                                 <Col lg={4}>
                                     <div className="loanperform">
                                         <div className="form-group">
+                                            <label>Estimated EMI</label>
+                                            <input
+                                                type="text"
+                                                placeholder="Estimated EMI"
+                                                className="form-control"
+                                                value={emi ? `₹ ${emi}` : ''}
+                                                readOnly
+                                            />
+                                            {emi && (
+                                                <p className="emi-details-abcd">
+                                                    *For details or any changes use EMI calculator
+                                                </p>
+                                            )}
+                                        </div>
+                                    </div>
+                                </Col>
+                                <Col lg={4}>
+                                    <div className="loanperform">
+                                        <div className="form-group">
                                             <label htmlFor="netSalary">Net Salary</label>
-                                            <select 
+                                            <input
+                                                type="text"
                                                 id="netSalary"
                                                 className={`form-control ${errors.netSalary ? 'is-invalid' : ''}`}
                                                 value={netSalary}
                                                 onChange={(e) => setNetSalary(e.target.value)}
-                                            >
-                                                <option value="" disabled>
-                                                    Select Your Net Salary
-                                                </option>
-                                                <option value="Up to ₹50k">Up to ₹50k</option>
-                                                <option value="₹50k - ₹1.2 Lacs">₹50k - ₹1.2 Lacs</option>
-                                                <option value="₹1.2 – ₹1.8 Lacs">₹1.2 – ₹1.8 Lacs</option>
-                                                <option value="₹1.8 – ₹2.2 Lacs">₹1.8 – ₹2.2 Lacs</option>
-                                                <option value="₹2.4 – ₹3 Lacs">₹2.4 – ₹3 Lacs</option>
-                                                <option value="₹3 - ₹4 Lacs">₹3 - ₹4 Lacs</option>
-                                                <option value="₹4 - ₹5 Lacs">₹4 - ₹5 Lacs</option>
-                                                <option value="₹5 - ₹10 Lacs">₹5 - ₹10 Lacs</option>
-                                                <option value="₹10 Lacs +">₹10 Lacs +</option>
-                                            </select>
+                                                placeholder="Enter Your Net Salary"
+                                            />
                                             {errors.netSalary && <div className="invalid-feedback">{errors.netSalary}</div>}
                                         </div>
                                     </div>
@@ -366,18 +390,21 @@ const ApplyLoan = () => {
                                     <div className="loanperform">
                                         <div className="form-group">
                                             <label htmlFor="currentCompanyExp">Current Company Exp (In years)</label>
-                                            <select 
+                                            <select
                                                 id="currentCompanyExp"
                                                 className={`form-control ${errors.currentCompanyExp ? 'is-invalid' : ''}`}
                                                 value={currentCompanyExp}
                                                 onChange={(e) => setCurrentCompanyExp(e.target.value)}
                                             >
                                                 <option value="" disabled>
-                                                    Select Your Current Company Exp (In years)
+                                                    Select Your Current Company Exp
                                                 </option>
-                                                <option value="1 to 5yrs">1 to 5yrs</option>
-                                                <option value="5 to 10yrs">5 to 10yrs</option>
-                                                <option value="10+ yrs">10+ yrs</option>
+                                                <option value="1 Year">1 Year</option>
+                                                <option value="2 Years">2 Years</option>
+                                                <option value="3 Years">3 Years</option>
+                                                <option value="4 Years">4 Years</option>
+                                                <option value="5 Years">5 Years</option>
+                                                <option value="5 years & Above">5 years & Above</option>
                                             </select>
                                             {errors.currentCompanyExp && <div className="invalid-feedback">{errors.currentCompanyExp}</div>}
                                         </div>
@@ -387,18 +414,21 @@ const ApplyLoan = () => {
                                     <div className="loanperform">
                                         <div className="form-group">
                                             <label htmlFor="totalExp">Total Experience (In years)</label>
-                                            <select 
+                                            <select
                                                 id="totalExp"
                                                 className={`form-control ${errors.totalExp ? 'is-invalid' : ''}`}
                                                 value={totalExp}
                                                 onChange={(e) => setTotalExp(e.target.value)}
                                             >
                                                 <option value="" disabled>
-                                                    Select Your Total Experience (In years)
+                                                    Select Your Total Exp
                                                 </option>
-                                                <option value="1 to 5yrs">1 to 5yrs</option>
-                                                <option value="5 to 10yrs">5 to 10yrs</option>
-                                                <option value="10+ yrs">10+ yrs</option>
+                                                <option value="1 Year">1 Year</option>
+                                                <option value="2 Years">2 Years</option>
+                                                <option value="3 Years">3 Years</option>
+                                                <option value="4 Years">4 Years</option>
+                                                <option value="5 Years">5 Years</option>
+                                                <option value="5 years & Above">5 years & Above</option>
                                             </select>
                                             {errors.totalExp && <div className="invalid-feedback">{errors.totalExp}</div>}
                                         </div>
@@ -408,7 +438,7 @@ const ApplyLoan = () => {
                                     <div className="loanperform">
                                         <div className="form-group">
                                             <label htmlFor="loanDate">
-                                                Date of personal loan
+                                                Date of Birth
                                             </label>
                                             <input
                                                 type="date"
@@ -425,7 +455,7 @@ const ApplyLoan = () => {
                                     <div className="loanperform">
                                         <div className="form-group">
                                             <label htmlFor="residenceType">Select Residence Type</label>
-                                            <select 
+                                            <select
                                                 id="residenceType"
                                                 className={`form-control ${errors.residenceType ? 'is-invalid' : ''}`}
                                                 value={residenceType}
@@ -467,12 +497,12 @@ const ApplyLoan = () => {
                                             <input
                                                 type="email"
                                                 id="email"
-                                                className={`form-control ${errors.email ? 'is-invalid' : ''}`}
+                                                className={`form-control ${errors.emailId ? 'is-invalid' : ''}`}
                                                 placeholder="Enter Your Email Address"
-                                                value={email}
+                                                value={emailId}
                                                 onChange={handleEmailChange}
                                             />
-                                            {errors.email && <div className="invalid-feedback">{errors.email}</div>}
+                                            {errors.emailId && <div className="invalid-feedback">{errors.emailId}</div>}
                                         </div>
                                     </div>
                                 </Col>
@@ -496,7 +526,7 @@ const ApplyLoan = () => {
                                     <div className="loanperform">
                                         <div className="form-group">
                                             <label htmlFor="loanPurpose">Purpose of Loan</label>
-                                            <select 
+                                            <select
                                                 id="loanPurpose"
                                                 className={`form-control ${errors.loanPurpose ? 'is-invalid' : ''}`}
                                                 value={loanPurpose}
@@ -522,8 +552,8 @@ const ApplyLoan = () => {
                                     className="submitbuttonloanform"
                                     style={{ textAlign: "center" }}
                                 >
-                                    <button 
-                                        className="submit12" 
+                                    <button
+                                        className="submit12"
                                         onClick={handleSubmit}
                                         disabled={isSubmitting}
                                     >
@@ -546,11 +576,12 @@ const ApplyLoan = () => {
                 <Modal.Header closeButton>
                 </Modal.Header>
                 <Modal.Body>
-                  <LoginModal handleClose2={handleClose2}/>
+                    <LoginModal handleClose2={handleClose2} />
                 </Modal.Body>
             </Modal>
         </>
     )
+
 }
 
 export default ApplyLoan

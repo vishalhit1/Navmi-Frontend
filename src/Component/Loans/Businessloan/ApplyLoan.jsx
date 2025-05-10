@@ -5,12 +5,13 @@ import Swal from 'sweetalert2';
 import LoginModal from "../../Common/LoginModal";
 
 const ApplyLoan = () => {
+    const [emi, setEmi] = useState('');
     const [show, setShow] = useState(false);
     const [show2, setShow2] = useState(false);
     const handleClose2 = () => setShow2(false);
     const handleClose = () => setShow(false);
     const sessionStoragetoken = sessionStorage.getItem('token');
-    
+
     const handleShow = () => {
         if (!sessionStoragetoken) {
             setShow2(true);
@@ -111,10 +112,10 @@ const ApplyLoan = () => {
     // Handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
+
         if (validateForm()) {
             setIsSubmitting(true);
-            
+
             // Show loading state
             Swal.fire({
                 title: 'Submitting...',
@@ -124,7 +125,7 @@ const ApplyLoan = () => {
                     Swal.showLoading();
                 }
             });
-            
+
             try {
                 const response = await axios.post("http://localhost:8000/mail/businessloan", {
                     fullName,
@@ -139,9 +140,9 @@ const ApplyLoan = () => {
                     emailId,
                     purposeOfLoan
                 });
-                
+
                 console.log("Form submission response:", response.data);
-                
+
                 // Show success message
                 Swal.fire({
                     title: 'Success!',
@@ -153,10 +154,10 @@ const ApplyLoan = () => {
                     handleClose();
                     resetForm();
                 });
-                
+
             } catch (error) {
                 console.error("Form submission error:", error);
-                
+
                 // Show error message
                 Swal.fire({
                     title: 'Submission Failed',
@@ -169,7 +170,20 @@ const ApplyLoan = () => {
             }
         }
     };
-    
+
+    React.useEffect(() => {
+        const principal = parseFloat(loanAmount);
+        const rate = 15 / 12 / 100; // Monthly interest rate (15% annual)
+        const tenure = 3 * 12; // 3 years in months
+
+        if (!isNaN(principal) && principal > 0) {
+            const emiCalculated = (principal * rate * Math.pow(1 + rate, tenure)) / (Math.pow(1 + rate, tenure) - 1);
+            setEmi(emiCalculated.toFixed(2));
+        } else {
+            setEmi('');
+        }
+    }, [loanAmount]);
+
     // Reset form after submission
     const resetForm = () => {
         setFullName('');
@@ -234,20 +248,14 @@ const ApplyLoan = () => {
                                         <div className="loanperform">
                                             <div className="form-group">
                                                 <label htmlFor="loanAmount">Loan Amount</label>
-                                                <select 
+                                                <input
+                                                    type="text"
                                                     id="loanAmount"
                                                     className={`form-control ${errors.loanAmount ? 'is-invalid' : ''}`}
                                                     value={loanAmount}
                                                     onChange={(e) => setLoanAmount(e.target.value)}
-                                                >
-                                                    <option value="" disabled>Select Your Loan Amount</option>
-                                                    <option value="Below ₹2 Lacs">Below ₹2 Lacs</option>
-                                                    <option value="₹20 - ₹50 Lacs">₹20 - ₹50 Lacs</option>
-                                                    <option value="₹50 - ₹1 Cr">₹50 - ₹1 Cr</option>
-                                                    <option value="₹1 Cr - ₹3 Cr">₹1 Cr - ₹3 Cr</option>
-                                                    <option value="₹3 Cr - ₹5 Cr">₹3 Cr - ₹5 Cr</option>
-                                                    <option value="₹5 Cr +">₹5 Cr +</option>
-                                                </select>
+                                                    placeholder="Enter Loan Amount (e.g., 500000)"
+                                                />
                                                 {errors.loanAmount && <div className="invalid-feedback">{errors.loanAmount}</div>}
                                             </div>
                                         </div>
@@ -255,23 +263,39 @@ const ApplyLoan = () => {
                                     <Col lg={4}>
                                         <div className="loanperform">
                                             <div className="form-group">
+                                                <label>Estimated EMI</label>
+                                                <input
+                                                    type="text"
+                                                    placeholder="Estimated EMI"
+                                                    className="form-control"
+                                                    value={emi ? `₹ ${emi}` : ''}
+                                                    readOnly
+                                                />
+                                                {emi && (
+                                                    <p className="emi-details-abcd">
+                                                        *For details or any changes use EMI calculator
+                                                    </p>
+                                                )}
+                                            </div>
+                                        </div>
+                                    </Col>
+                                    <Col lg={4}>
+                                        <div className="loanperform">
+                                            <div className="form-group">
                                                 <label htmlFor="turnOver">Turn Over</label>
-                                                <select 
+                                                <input
+                                                    type="text"
                                                     id="turnOver"
                                                     className={`form-control ${errors.turnOver ? 'is-invalid' : ''}`}
                                                     value={turnOver}
                                                     onChange={(e) => setTurnOver(e.target.value)}
-                                                >
-                                                    <option value="" disabled>Select Your Turn Over</option>
-                                                    <option value="₹50 Lacs - ₹1 Cr">₹50 Lacs - ₹1 Cr</option>
-                                                    <option value="₹1 Cr - ₹3 Cr">₹1 Cr - ₹3 Cr</option>
-                                                    <option value="₹3 Cr - ₹5 Cr">₹3 Cr - ₹5 Cr</option>
-                                                    <option value="₹5 Cr +">₹5 Cr +</option>
-                                                </select>
+                                                    placeholder="Enter Turn Over (e.g., 10000000)"
+                                                />
                                                 {errors.turnOver && <div className="invalid-feedback">{errors.turnOver}</div>}
                                             </div>
                                         </div>
                                     </Col>
+
                                     <Col lg={4}>
                                         <div className="loanperform">
                                             <div className="form-group">
@@ -292,7 +316,7 @@ const ApplyLoan = () => {
                                         <div className="loanperform">
                                             <div className="form-group">
                                                 <label htmlFor="lineOfBusiness">Line of Business</label>
-                                                <select 
+                                                <select
                                                     id="lineOfBusiness"
                                                     className={`form-control ${errors.lineOfBusiness ? 'is-invalid' : ''}`}
                                                     value={lineOfBusiness}
@@ -313,18 +337,19 @@ const ApplyLoan = () => {
                                         <div className="loanperform">
                                             <div className="form-group">
                                                 <label htmlFor="businessExperience">Total Business Experience (In Years)</label>
-                                                <select 
+                                                <select
                                                     id="businessExperience"
                                                     className={`form-control ${errors.businessExperience ? 'is-invalid' : ''}`}
                                                     value={businessExperience}
                                                     onChange={(e) => setBusinessExperience(e.target.value)}
                                                 >
-                                                    <option value="" disabled>Select Your Total Business Experience (In Years)</option>
-                                                    <option value="Under 1 years">Under 1 years</option>
-                                                    <option value="1 - 2 years">1 - 2 years</option>
-                                                    <option value="2 - 3 years">2 - 3 years</option>
-                                                    <option value="3 - 5 years">3 - 5 years</option>
-                                                    <option value="Over 5 years">Over 5 years</option>
+                                                    <option value="" disabled>Select Total Business Exp</option>
+                                                    <option value="1 Year">1 Year</option>
+                                                    <option value="2 Years">2 Years</option>
+                                                    <option value="3 Years">3 Years</option>
+                                                    <option value="4 Years">4 Years</option>
+                                                    <option value="5 Years">5 Years</option>
+                                                    <option value="5 years & Above">5 years & Above</option>
                                                 </select>
                                                 {errors.businessExperience && <div className="invalid-feedback">{errors.businessExperience}</div>}
                                             </div>
@@ -333,7 +358,7 @@ const ApplyLoan = () => {
                                     <Col lg={4}>
                                         <div className="loanperform">
                                             <div className="form-group">
-                                                <label htmlFor="loanDate">Date of personal loan</label>
+                                                <label htmlFor="loanDate">Date of birth</label>
                                                 <input
                                                     type="date"
                                                     id="loanDate"
@@ -348,7 +373,7 @@ const ApplyLoan = () => {
                                         <div className="loanperform">
                                             <div className="form-group">
                                                 <label htmlFor="residenceType">Select Residence Type</label>
-                                                <select 
+                                                <select
                                                     id="residenceType"
                                                     className="form-control"
                                                     value={residenceType}
@@ -398,7 +423,7 @@ const ApplyLoan = () => {
                                         <div className="loanperform">
                                             <div className="form-group">
                                                 <label htmlFor="purposeOfLoan">Purpose of Loan</label>
-                                                <select 
+                                                <select
                                                     id="purposeOfLoan"
                                                     className={`form-control ${errors.purposeOfLoan ? 'is-invalid' : ''}`}
                                                     value={purposeOfLoan}
@@ -423,9 +448,9 @@ const ApplyLoan = () => {
                                         className="submitbuttonloanform"
                                         style={{ textAlign: "center" }}
                                     >
-                                        <button 
-                                            type="submit" 
-                                            className="submit12" 
+                                        <button
+                                            type="submit"
+                                            className="submit12"
                                             disabled={isSubmitting}
                                         >
                                             {isSubmitting ? 'Submitting...' : 'Submit'}
@@ -446,7 +471,7 @@ const ApplyLoan = () => {
                 <Modal.Header closeButton>
                 </Modal.Header>
                 <Modal.Body>
-                  <LoginModal handleClose2={handleClose2}/>
+                    <LoginModal handleClose2={handleClose2} />
                 </Modal.Body>
             </Modal>
         </>

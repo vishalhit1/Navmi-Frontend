@@ -165,7 +165,6 @@ const BecamePartner = () => {
   // Form state variables - properly aligned with actual form fields
   const [formData, setFormData] = useState({
     firstname: "",
-    middlename: "",
     lastname: "",
     mobileno: "",
     panno: "",
@@ -227,12 +226,6 @@ const BecamePartner = () => {
     // First Name validation
     if (!formData.firstname) {
       tempErrors.firstname = "First Name is required";
-      isValid = false;
-    }
-
-    // First Name validation
-    if (!formData.middlename) {
-      tempErrors.middlename = "Middle Name is required";
       isValid = false;
     }
 
@@ -314,7 +307,6 @@ const BecamePartner = () => {
   const resetForm = () => {
     setFormData({
       firstname: "",
-      middlename: "",
       lastname: "",
       mobileno: "",
       panno: "",
@@ -407,18 +399,6 @@ const BecamePartner = () => {
                       placeholder="Your First Name *"
                     />
                     {errors.firstname && <div className="invalid-feedback">{errors.firstname}</div>}
-                  </Col>
-                  <Col lg={6}>
-                    <label>Middle Name</label>
-                    <input
-                      type="text"
-                      name="middlename"
-                      value={formData.middlename}
-                      onChange={handleInputChange}
-                      className={`form-control ${errors.middlename ? 'is-invalid' : ''}`}
-                      placeholder="Your Middle Name"
-                    />
-                    {errors.middlename && <div className="invalid-feedback">{errors.middlename}</div>}
                   </Col>
                   <Col lg={6}>
                     <label>Last Name</label>

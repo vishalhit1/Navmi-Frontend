@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Row, Col, Form, Button, Table, Breadcrumb } from "react-bootstrap";
+import { Container, Row, Col, Form, Button, Table, Breadcrumb ,Card } from "react-bootstrap";
 
 const LoanComparision = () => {
   const [loan1, setLoan1] = useState({ principal: '', interest: '', tenure: '', tenureType: 'years' });
@@ -26,7 +26,7 @@ const LoanComparision = () => {
       // Remove invalid characters but keep Rupee format
       const rawValue = value.replace(/[^0-9]/g, '');
       const formattedValue = rawValue ? formatRupee(rawValue) : '';
-      
+
       if (loan === "loan1") {
         setLoan1({ ...loan1, [name]: formattedValue });
       } else {
@@ -76,7 +76,7 @@ const LoanComparision = () => {
       setValidated(true);
       return;
     }
-  
+
     // Ensure clean numeric values
     const cleanPrincipal1 = parseFloat(stripRupee(loan1.principal));
     const cleanPrincipal2 = parseFloat(stripRupee(loan2.principal));
@@ -86,45 +86,45 @@ const LoanComparision = () => {
     const tenure2 = parseFloat(loan2.tenure);
     const tenureType1 = loan1.tenureType;
     const tenureType2 = loan2.tenureType;
-  
+
     // Validate inputs
-    if (!cleanPrincipal1 || !cleanPrincipal2 || 
-        !interest1 || !interest2 || 
-        !tenure1 || !tenure2 || 
-        cleanPrincipal1 <= 0 || cleanPrincipal2 <= 0 || 
-        interest1 <= 0 || interest2 <= 0 || 
-        tenure1 <= 0 || tenure2 <= 0) {
+    if (!cleanPrincipal1 || !cleanPrincipal2 ||
+      !interest1 || !interest2 ||
+      !tenure1 || !tenure2 ||
+      cleanPrincipal1 <= 0 || cleanPrincipal2 <= 0 ||
+      interest1 <= 0 || interest2 <= 0 ||
+      tenure1 <= 0 || tenure2 <= 0) {
       alert('Please enter valid loan details');
       return;
     }
-  
+
     // Precise EMI calculation with monthly interest rate
     const calculatePreciseEMI = (principal, annualInterest, tenure, tenureType) => {
       const monthlyInterestRate = annualInterest / 12 / 100;
       const totalMonths = tenureType === 'years' ? tenure * 12 : tenure;
-      
-      const emi = principal * 
-        (monthlyInterestRate * Math.pow(1 + monthlyInterestRate, totalMonths)) / 
+
+      const emi = principal *
+        (monthlyInterestRate * Math.pow(1 + monthlyInterestRate, totalMonths)) /
         (Math.pow(1 + monthlyInterestRate, totalMonths) - 1);
-      
+
       return emi;
     };
-  
+
     // Calculate precise EMIs
     const preciseEmi1 = calculatePreciseEMI(cleanPrincipal1, interest1, tenure1, tenureType1);
     const preciseEmi2 = calculatePreciseEMI(cleanPrincipal2, interest2, tenure2, tenureType2);
-  
+
     // Total payments with precise calculation
     const totalMonths1 = tenureType1 === 'years' ? tenure1 * 12 : tenure1;
     const totalMonths2 = tenureType2 === 'years' ? tenure2 * 12 : tenure2;
-    
+
     const totalPayment1 = preciseEmi1 * totalMonths1;
     const totalPayment2 = preciseEmi2 * totalMonths2;
-  
+
     // Interest payable
     const interestPayable1 = totalPayment1 - cleanPrincipal1;
     const interestPayable2 = totalPayment2 - cleanPrincipal2;
-  
+
     setResult({
       emi1: preciseEmi1,
       emi2: preciseEmi2,
@@ -144,8 +144,8 @@ const LoanComparision = () => {
         <h3>Compare Loans</h3>
       </section>
       <Breadcrumb className="breadcrumsvss mt-3 ms-4">
-      <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
-      <Breadcrumb.Item href="/emi-calculator-list">Emi Calculator List</Breadcrumb.Item>
+        <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
+        <Breadcrumb.Item href="/balance-transfer-calculator-list">Balance Transfer Calculator</Breadcrumb.Item>
         <Breadcrumb.Item active>Compare Loans</Breadcrumb.Item>
       </Breadcrumb>
       <Container className="mt-5">
@@ -153,10 +153,10 @@ const LoanComparision = () => {
           {/* Loan 1 */}
           <Col md={6}>
             <div className="compare-loans">
-              <h4>Loan 1</h4>
+              <h4>Existing Loan</h4>
               <Form id="loanComparisonForm" noValidate validated={validated}>
                 <Form.Group>
-                  <Form.Label>Principal Amount</Form.Label>
+                  <Form.Label>Outstanding Principal</Form.Label>
                   <Form.Control
                     type="text"
                     required
@@ -171,7 +171,7 @@ const LoanComparision = () => {
                   </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group className="mt-3">
-                  <Form.Label>Interest Rate (%)</Form.Label>
+                  <Form.Label>Current ROI (%)</Form.Label>
                   <Form.Control
                     type="text"
                     required
@@ -186,7 +186,7 @@ const LoanComparision = () => {
                   </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group className="mt-3">
-                  <Form.Label>Tenure</Form.Label>
+                  <Form.Label>Remaining Tenure</Form.Label>
                   <Row>
                     <Col sm={8}>
                       <Form.Control
@@ -221,7 +221,7 @@ const LoanComparision = () => {
           {/* Loan 2 */}
           <Col md={6}>
             <div className="compare-loans">
-              <h4>Loan 2</h4>
+              <h4>After Balance Transfer</h4>
               <Form noValidate validated={validated}>
                 <Form.Group>
                   <Form.Label>Principal Amount</Form.Label>
@@ -239,7 +239,7 @@ const LoanComparision = () => {
                   </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group className="mt-3">
-                  <Form.Label>Interest Rate (%)</Form.Label>
+                  <Form.Label>New ROI (%)</Form.Label>
                   <Form.Control
                     type="text"
                     required
@@ -294,39 +294,71 @@ const LoanComparision = () => {
         </div>
 
         {result && (
-          <div className="compare-loans mt-4">
-            <h4>Comparison Results</h4>
-            <Table striped className="mt-4">
-              <thead>
-                <tr>
-                  <th>Parameter</th>
-                  <th>Loan 1</th>
-                  <th>Loan 2</th>
-                  <th>Difference</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Monthly EMI</td>
-                  <td>{formatRupee(result.emi1)}</td>
-                  <td>{formatRupee(result.emi2)}</td>
-                  <td>{formatRupee(result.emiDiff)}</td>
-                </tr>
-                <tr>
-                  <td>Total Interest Payable</td>
-                  <td>{formatRupee(result.interest1)}</td>
-                  <td>{formatRupee(result.interest2)}</td>
-                  <td>{formatRupee(result.interestDiff)}</td>
-                </tr>
-                <tr>
-                  <td>Total Payment</td>
-                  <td>{formatRupee(result.totalPayment1)}</td>
-                  <td>{formatRupee(result.totalPayment2)}</td>
-                  <td>{formatRupee(result.totalPaymentDiff)}</td>
-                </tr>
-              </tbody>
-            </Table>
-          </div>
+          <>
+            <Row>
+            <Col lg={4}>
+              <div className='loan-tenure-summary'>
+                <Card className="mt-4">
+                  <Card.Header as="h4" className="text-center">EMI</Card.Header>
+                  <Card.Body>
+                    <div className="d-flex justify-content-around">
+                      <div className="text-center">
+                        <h5>{formatRupee(result.emi1)}</h5>
+                      </div>
+                      <div className="text-center">
+                        <h5>{formatRupee(result.emi2)}</h5>
+                      </div>
+                    </div>
+                    <div className='loan-estimated'>
+                     Difference : {formatRupee(result.emiDiff)}
+                    </div>
+                  </Card.Body>
+                </Card>
+              </div>
+            </Col>
+            <Col lg={4}>
+              <div className='loan-tenure-summary'>
+                <Card className="mt-4">
+                  <Card.Header as="h4" className="text-center">Interest Payable</Card.Header>
+                  <Card.Body>
+                    <div className="d-flex justify-content-around">
+                      <div className="text-center">
+                        <h5>{formatRupee(result.interest1)}</h5>
+                      </div>
+                      <div className="text-center">
+                        <h5>{formatRupee(result.interest2)}</h5>
+                      </div>
+                    </div>
+                    <div className='loan-estimated'>
+                     Difference : {formatRupee(result.interestDiff)}
+                    </div>
+                  </Card.Body>
+                </Card>
+              </div>
+            </Col>
+            <Col lg={4}>
+              <div className='loan-tenure-summary'>
+                <Card className="mt-4">
+                  <Card.Header as="h4" className="text-center">Total Payment</Card.Header>
+                  <Card.Body>
+                    <div className="d-flex justify-content-around">
+                      <div className="text-center">
+                        <h5>{formatRupee(result.totalPayment1)}</h5>
+                      </div>
+                      <div className="text-center">
+                        <h5>{formatRupee(result.totalPayment2)}</h5>
+                      </div>
+                    </div>
+                    <div className='loan-estimated'>
+                     Difference : {formatRupee(result.totalPaymentDiff)}
+                    </div>
+                  </Card.Body>
+                </Card>
+              </div>
+            </Col>
+            </Row>
+          </>
+          
         )}
       </Container>
     </>

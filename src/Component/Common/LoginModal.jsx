@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import axios from "axios";
 import { Link, useLocation } from 'react-router-dom';
 import { Navbar, Container, Nav, NavDropdown, Offcanvas, Button, Form, Modal, Row, Col } from 'react-bootstrap';
 import Creditscore from '../../assets/login.png';
@@ -15,6 +14,20 @@ const LoginModal = ({ handleClose2 }) => {
     const [otploader, setOtploader] = useState(false)
     const [resendDisabled, setResendDisabled] = useState(false);
     const [timer, setTimer] = useState(60);
+
+    // Handle timer for OTP resend
+    useEffect(() => {
+        let interval;
+        if (resendDisabled && timer > 0) {
+            interval = setInterval(() => {
+                setTimer(prev => prev - 1);
+            }, 1000);
+        } else if (timer === 0) {
+            setResendDisabled(false);
+            setTimer(60);
+        }
+        return () => clearInterval(interval);
+    }, [resendDisabled, timer]);
 
     const SendLoginOtp = async (e) => {
         try {
@@ -89,8 +102,7 @@ const LoginModal = ({ handleClose2 }) => {
                             // Close the modal
                             handleClose2();
                             
-                            // Refresh the page after successful login
-                            window.location.reload();
+                            // Removed window.location.reload() to prevent page refresh
                         });
                     } else {
                         Swal.fire({
@@ -110,11 +122,12 @@ const LoginModal = ({ handleClose2 }) => {
                 confirmButtonColor: '#DA3731'
             });
         } finally {
+            // Reset form state
             setPhoneno("");
             setOtp("");
             setOtpSent(false);
-            setResendDisabled(false)
-            setOtploader(false)
+            setResendDisabled(false);
+            setOtploader(false);
         }
     }
 
@@ -129,21 +142,21 @@ const LoginModal = ({ handleClose2 }) => {
     return (
         <div className="LoginPopup">
             <Row>
-
                 <Col lg={6}>
                     <div className='mobile-otp-abcds'>
-                        <h3>Welcome Back ! <br/>please enter your mobile number</h3>
-                        <form>
+                        <h3>Welcome Back ! <br />please enter your mobile number</h3>
+                        <form onSubmit={otpSent ? LoginOtpSubmit : SendLoginOtp}>
                             <div className="form-group">
                                 <label htmlFor="email">Enter Mobile Number</label>
                                 <input
                                     type="text"
                                     className='form-control'
                                     placeholder="Enter Mobile Number"
-                                    defaultValue={phoneno}
+                                    value={phoneno}
                                     onChange={(e) => setPhoneno(e.target.value)}
                                     onInput={allowOnlyNumbers}
                                     maxLength="10"
+                                    required
                                 />
                             </div>
                             {otpSent &&
@@ -153,23 +166,34 @@ const LoginModal = ({ handleClose2 }) => {
                                         type="number"
                                         className='form-control'
                                         placeholder="Enter OTP"
-                                        defaultValue={otp}
+                                        value={otp}
                                         onChange={(e) => setOtp(e.target.value)}
+                                        required
                                     />
                                 </div>
                             }
+                            {otploader ? 
+                                <div className='text-center'>Please Wait...</div>
+                            : !otpSent ? (
+                                <button 
+                                    type="submit" 
+                                    className='submit12' 
+                                    style={{ marginTop: '0px' }} 
+                                    disabled={resendDisabled || !phoneno || phoneno.length !== 10}
+                                >
+                                    {resendDisabled ? `Resend OTP in ${timer}s` : "Login With OTP"}
+                                </button>
+                            ) : (
+                                <button 
+                                    type="submit" 
+                                    className='submit12' 
+                                    style={{ marginTop: '0px' }}
+                                    disabled={!otp}
+                                >
+                                    Submit
+                                </button>
+                            )}
                         </form>
-                        {otploader ? <div className='text-center'>Please Wait...</div>
-                            :
-                            !otploader && !otpSent ?
-                                (
-                                    <button className='submit12' style={{marginTop:'0px'}} onClick={SendLoginOtp} disabled={resendDisabled} >{resendDisabled ? `Resend OTP in ${timer}s` : "Login With OTP"}</button>
-                                ) : otpSent ?
-                                    (
-                                        <button className='submit12' style={{marginTop:'0px'}} onClick={LoginOtpSubmit}>Submit</button>
-                                    ) : ""
-
-                        }
                     </div>
                 </Col>
                 <Col lg={6}>

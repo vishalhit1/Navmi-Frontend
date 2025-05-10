@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from "axios";
-import { Container, Row, Col, Modal } from 'react-bootstrap';
+import { Container, Row, Col, Modal ,Form } from 'react-bootstrap';
 import logo from '../../assets/logo.svg';
 import { Link, useLocation } from "react-router-dom";
 import Arrow from '../../assets/arrow.svg';
@@ -189,9 +189,9 @@ const Footer = () => {
 
     return (
         <div>
-            <a className='what-icons' href="https://api.whatsapp.com/send?phone=919594450450">
+            {/* <a className='what-icons' href="https://api.whatsapp.com/send?phone=919594450450">
                 <img src={whatsapicon} alt="" />
-            </a>
+            </a> */}
             <img className="enquire" src={Enquire} alt="" onClick={handleShow} />
             <Container fluid className='footer'>
                 <Row>
@@ -336,7 +336,12 @@ const Footer = () => {
                                             rows="3"
                                         />
                                     </div>
-
+                                    <Form.Check // prettier-ignore
+                                    required
+                                        type="checkbox"
+                                        id="checkbox"
+                                        label="Request a Call Back"
+                                    />           
                                     <button
                                         type="submit"
                                         className="submit12"

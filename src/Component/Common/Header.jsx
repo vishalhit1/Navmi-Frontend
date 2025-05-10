@@ -1,4 +1,4 @@
-import React,{ useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import { Link, useLocation } from 'react-router-dom';
 import { Navbar, Container, Nav, NavDropdown, Offcanvas, Button, Form, Modal, Row, Col } from 'react-bootstrap';
@@ -147,191 +147,6 @@ const Header = () => {
         }
     };
 
-    // Credit Score form validation
-    const [creditForm, setCreditForm] = useState({
-        mobile: "",
-        otp: "",
-        pan: "",
-        pincode: "",
-        dob: "",
-        email: ""
-    });
-
-    const [creditFormErrors, setCreditFormErrors] = useState({});
-
-    const handleCreditFormChange = (e) => {
-        const { name, value } = e.target;
-        setCreditForm({
-            ...creditForm,
-            [name]: value
-        });
-    };
-
-    const validateCreditForm = () => {
-        let tempErrors = {};
-
-        if (!creditForm.mobile) tempErrors.mobile = "Mobile number is required";
-        else if (!/^\d{10}$/.test(creditForm.mobile)) tempErrors.mobile = "Mobile number must be 10 digits";
-
-        if (!creditForm.otp) tempErrors.otp = "OTP is required";
-
-        if (!creditForm.pan) tempErrors.pan = "PAN number is required";
-        else if (!/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(creditForm.pan)) tempErrors.pan = "Invalid PAN format";
-
-        if (!creditForm.pincode) tempErrors.pincode = "Pin code is required";
-        else if (!/^\d{6}$/.test(creditForm.pincode)) tempErrors.pincode = "Pin code must be 6 digits";
-
-        if (!creditForm.dob) tempErrors.dob = "Date of birth is required";
-
-        if (!creditForm.email) tempErrors.email = "Email is required";
-        else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(creditForm.email)) tempErrors.email = "Invalid email format";
-
-        setCreditFormErrors(tempErrors);
-        return Object.keys(tempErrors).length === 0;
-    };
-
-    const submitCreditForm = (e) => {
-        e.preventDefault();
-
-        if (validateCreditForm()) {
-            try {
-                // API call would go here
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Request Submitted',
-                    text: 'Your credit score check request has been submitted.',
-                    confirmButtonColor: '#DA3731'
-                });
-
-                // Reset form
-                setCreditForm({
-                    mobile: "",
-                    otp: "",
-                    pan: "",
-                    pincode: "",
-                    dob: "",
-                    email: ""
-                });
-
-                handleClose1();
-            } catch (error) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Submission Failed',
-                    text: 'Unable to process your request. Please try again later.',
-                    confirmButtonColor: '#DA3731'
-                });
-            }
-        } else {
-            Swal.fire({
-                icon: 'warning',
-                title: 'Validation Error',
-                text: 'Please check all fields and try again.',
-                confirmButtonColor: '#DA3731'
-            });
-        }
-    };
-
-    const SendLoginOtp = async (e) => {
-        try {
-            e.preventDefault();
-            setOtploader(true)
-
-            // API call would go here
-            const requestOptions = {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ "phone": phoneno })
-            };
-            await fetch('http://localhost:8000/send-otp', requestOptions)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'OTP Sent',
-                            text: 'Your OTP has been sent successfully.',
-                            confirmButtonColor: '#DA3731'
-                        });
-                        setOtpSent(true);
-                        setResendDisabled(true);
-                        setTimer(60);
-                    } else {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Error',
-                            text: data.message,
-                            confirmButtonColor: '#DA3731'
-                        });
-                    }
-                })
-        } catch (error) {
-            console.log(error);
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'Failed to send OTP. Please try again later.',
-                confirmButtonColor: '#DA3731'
-            });
-        } finally {
-            setOtploader(false)
-        }
-    }
-
-    const LoginOtpSubmit = async (e) => {
-        try {
-            e.preventDefault();
-            setOtploader(true)
-
-            // API call would go here
-            const requestOptions = {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ "phone": phoneno, "otp": otp })
-            };
-            await fetch('http://localhost:8000/login', requestOptions)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Login Successful',
-                            text: 'You are now logged in.',
-                            confirmButtonColor: '#DA3731'
-                        });
-                        handleClose2()
-                        
-                        console.log(data.data);
-                        console.log(data.token);
-                        sessionStorage.setItem("token", JSON.stringify(data.token));
-                    } else {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Error',
-                            text: data.message,
-                            confirmButtonColor: '#DA3731'
-                        });
-                    }
-                })
-        } catch (error) {
-            console.log(error);
-        } finally {
-            setPhoneno("");
-            setOtp("");
-            setOtpSent(false);
-            setResendDisabled(false)
-            setOtploader(false)
-        }
-    }
-
-    const allowOnlyNumbers = (e) => {
-        const input = e.target.value;
-        const regex = /^[0-9]*$/;
-        if (!regex.test(input)) {
-            e.target.value = input.replace(/[^0-9]/g, '');
-        }
-    }
-
     return (
         <div id="toplocation">
             <div className="header-top">
@@ -475,15 +290,17 @@ const Header = () => {
                                     </NavDropdown>
                                     <NavDropdown title="Tool" id={`offcanvasNavbarDropdown-expand-${expand}`}>
                                         <NavDropdown.Item href="/emi-calculator-list" style={isActive('/emi-calculator-list')}>Emi Calculator</NavDropdown.Item>
+                                        <NavDropdown.Item href="/balance-transfer-calculator-list" style={isActive('/balance-transfer-calculator-list')}>Balance Transfer Calculator</NavDropdown.Item>
+                                        <NavDropdown.Item href="/revised-emi-calculator-list" style={isActive('/revised-emi-calculator-list')}>Revised Emi Calculator</NavDropdown.Item>
                                     </NavDropdown>
                                     <Nav.Link href="contact-us" style={isActive('/contact-us')}>Contact Us</Nav.Link>
                                 </Nav>
                                 {sessionStoragetoken ?
                                     <Button variant="outline-success">Dashboard</Button>
                                     :
-                                <Form className="d-flex">
-                                    <a onClick={handleShow2}><Button variant="outline-success">Login now</Button></a>
-                                </Form>
+                                    <Form className="d-flex">
+                                        <a onClick={handleShow2}><Button variant="outline-success">Login now</Button></a>
+                                    </Form>
                                 }
                             </Offcanvas.Body>
                         </Navbar.Offcanvas>
@@ -601,7 +418,7 @@ const Header = () => {
                 <Modal.Header closeButton>
                 </Modal.Header>
                 <Modal.Body>
-                  <LoginModal handleClose2={handleClose2}/>
+                    <LoginModal handleClose2={handleClose2} />
                 </Modal.Body>
             </Modal>
         </div>

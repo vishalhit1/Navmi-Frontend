@@ -106,7 +106,7 @@ function RevisedEMICalculator() {
             </section>
             <Breadcrumb className="mt-3 ms-4">
             <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
-            <Breadcrumb.Item href="/emi-calculator-list">Emi Calculator List</Breadcrumb.Item>
+            <Breadcrumb.Item href="/revised-emi-calculator-list">Revised Emi Calculator</Breadcrumb.Item>
                 <Breadcrumb.Item active>Revised EMI & Tenure Calculator</Breadcrumb.Item>
             </Breadcrumb>
             <Container className="mt-4">

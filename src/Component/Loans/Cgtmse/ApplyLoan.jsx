@@ -145,7 +145,7 @@ const ApplyLoan = () => {
 
         // Business Registration Number validation
         if (!formData.businessRegNumber) {
-            tempErrors.businessRegNumber = "Business Registration Number is required";
+            tempErrors.businessRegNumber = "GSTIN Number is required";
             isValid = false;
         }
 
@@ -462,12 +462,12 @@ const ApplyLoan = () => {
                                     <Col lg={4}>
                                         <div className="loanperform">
                                             <div className="form-group">
-                                                <label htmlFor="businessRegNumber">Business Registration Number</label>
+                                                <label htmlFor="businessRegNumber">GSTIN Number</label>
                                                 <input
                                                     type="text"
                                                     name="businessRegNumber"
                                                     className={`form-control ${errors.businessRegNumber ? 'is-invalid' : ''}`}
-                                                    placeholder="Enter Your Business Registration Number"
+                                                    placeholder="Enter Your GSTIN Number"
                                                     value={formData.businessRegNumber}
                                                     onChange={handleInputChange}
                                                 />
@@ -510,12 +510,12 @@ const ApplyLoan = () => {
                                     <Col lg={4}>
                                         <div className="loanperform">
                                             <div className="form-group">
-                                                <label htmlFor="existingLoanDetails">Existing Loan Details (if any)</label>
+                                                <label htmlFor="existingLoanDetails">Existing Loan</label>
                                                 <input
                                                     type="text"
                                                     name="existingLoanDetails"
                                                     className="form-control"
-                                                    placeholder="Enter Your Existing Loan Details (if any)"
+                                                    placeholder="Enter Your Existing Loan"
                                                     value={formData.existingLoanDetails}
                                                     onChange={handleInputChange}
                                                 />
