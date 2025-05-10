@@ -377,12 +377,12 @@ const ApplyLoan = () => {
                                     <Col lg={4}>
                                         <div className="loanperform">
                                             <div className="form-group">
-                                                <label htmlFor="registrationNumber">Business Registration Number</label>
+                                                <label htmlFor="registrationNumber">GSTIN Number</label>
                                                 <input
                                                     type="text"
                                                     id="registrationNumber"
                                                     className="form-control"
-                                                    placeholder="Enter Your Business Registration Number"
+                                                    placeholder="Enter Your GSTIN Number"
                                                     value={registrationNumber}
                                                     onChange={(e) => setRegistrationNumber(e.target.value)}
                                                 />
@@ -422,12 +422,12 @@ const ApplyLoan = () => {
                                     <Col lg={4}>
                                         <div className="loanperform">
                                             <div className="form-group">
-                                                <label htmlFor="existingLoanDetails">Existing Loan Details (if any)</label>
+                                                <label htmlFor="existingLoanDetails">Existing Loan Details</label>
                                                 <input
                                                     type="text"
                                                     id="existingLoanDetails"
                                                     className="form-control"
-                                                    placeholder="Enter Your Existing Loan Details (if any)"
+                                                    placeholder="Enter Your Existing Loan Details"
                                                     value={existingLoanDetails}
                                                     onChange={(e) => setExistingLoanDetails(e.target.value)}
                                                 />

@@ -18,8 +18,8 @@ const Professionalloan = () => {
         DocumentRequired: false,
     });
     return (
-        <div className="mb-5">
-            <img className="w-100 mb-4 mt-4" src={personalimg} alt="" />
+        <div className="mb-5 new-css">
+            <img className="w-100 image-css-abcds" src={personalimg} alt="" />
             <Container fluid>
                 <Breadcrumb className="breadcrumsvss">
                     <Breadcrumb.Item href="/">Home</Breadcrumb.Item>

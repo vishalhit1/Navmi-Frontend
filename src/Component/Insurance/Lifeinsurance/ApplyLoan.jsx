@@ -171,11 +171,10 @@ const ApplyLoan = () => {
 
                 // Show success message
                 Swal.fire({
-                    title: 'Success!',
-                    text: 'Your enquiry has been submitted successfully',
+                    title: 'Thank You!',
+                    text: 'Your message has been sent successfully. We will get back to you soon.',
                     icon: 'success',
-                    timer: 2000,
-                    showConfirmButton: false
+                    confirmButtonText: 'Great!'
                 }).then(() => {
                     handleClose();
                     resetForm();
@@ -204,6 +203,7 @@ const ApplyLoan = () => {
         <>
             <button onClick={handleShow} className="applynow blink">Apply Now</button>
 
+            {/* Life Insrurance Modal */}
             <Modal show={show} onHide={handleClose} centered size="lg" backdrop="static" keyboard={false}>
                 <Modal.Header
                     closeButton
@@ -311,6 +311,8 @@ const ApplyLoan = () => {
                     </div>
                 </Modal.Body>
             </Modal>
+
+            {/* Login Modal */}
             <Modal className='QuickEnqu' size="xl"
                 aria-labelledby="contained-modal-title-vcenter"
                 centered backdrop="static"

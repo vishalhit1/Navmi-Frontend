@@ -3,8 +3,6 @@ import img1 from '../assets/calculator/first.svg'
 import img2 from '../assets/calculator/two.svg'
 import img3 from '../assets/calculator/three.svg'
 import img4 from '../assets/calculator/four.svg'
-import img5 from '../assets/calculator/five.svg'
-import img6 from '../assets/calculator/six.svg'
 import { Breadcrumb, Col, Container, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 const Emicalculatorlist = () => {
@@ -51,22 +49,6 @@ const Emicalculatorlist = () => {
                                     <div className='abcd-sas'>
                                         <img className='loan-iconsas' src={img4} alt="" />
                                         <h3>Calculate Interest</h3>
-                                    </div>
-                                </Link>
-                            </Col>
-                            <Col lg={4}>
-                                <Link to="/loan-comparision">
-                                    <div className='abcd-sas'>
-                                        <img className='loan-iconsas' src={img5} alt="" />
-                                        <h3>Compare Loans</h3>
-                                    </div>
-                                </Link>
-                            </Col>
-                            <Col lg={4}>
-                                <Link to="/revised-emi-calculator">
-                                    <div className='abcd-sas'>
-                                        <img className='loan-iconsas' src={img6} alt="" />
-                                        <h3>Revised EMI & Tenure</h3>
                                     </div>
                                 </Link>
                             </Col>

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
+import axios from "axios";
 import { Col, Container, Row } from 'react-bootstrap';
 import user from '../assets/icons/user.svg';
 import mail from '../assets/icons/mail.svg';
@@ -7,51 +8,160 @@ import helpcircle from '../assets/icons/help-circle.svg';
 import description from '../assets/icons/edit-3.svg';
 import Joinimg from '../assets/icons/joinimg.png';
 import Joinimg1 from '../assets/Homepage/joinus.svg';
-
+import Swal from 'sweetalert2'; // Import SweetAlert
 const Joinus = () => {
-    // State variables for form fields and validation
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [association, setAssociation] = useState('');
     const [comments, setComments] = useState('');
 
-    const [formErrors, setFormErrors] = useState({});
+    // Form validation and submission states
+    const [errors, setErrors] = useState({});
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [shouldSubmit, setShouldSubmit] = useState(false);
 
-    // Function to handle form submission
+    // Form validation function
+    const validateForm = () => {
+        let tempErrors = {};
+        let isValid = true;
+
+        // Name validation
+        if (!name.trim()) {
+            tempErrors.name = "Name is required";
+            isValid = false;
+        } else if (name.trim().length < 3) {
+            tempErrors.name = "Name must be at least 3 characters";
+            isValid = false;
+        }
+
+        // Email validation
+        if (!email.trim()) {
+            tempErrors.email = "Email is required";
+            isValid = false;
+        } else if (!/\S+@\S+\.\S+/.test(email)) {
+            tempErrors.email = "Email address is invalid";
+            isValid = false;
+        }
+
+        // Phone validation
+        if (!phone.trim()) {
+            tempErrors.phone = "Phone number is required";
+            isValid = false;
+        } else if (!/^\d{10}$/.test(phone.replace(/\s/g, ''))) {
+            tempErrors.phone = "Phone number must be 10 digits";
+            isValid = false;
+        }
+
+        if (!association.trim()) {
+            tempErrors.association = "Please enter your association";
+            isValid = false;
+        }
+
+        // Comments validation
+        if (!comments.trim()) {
+            tempErrors.comments = "Please enter your comments";
+            isValid = false;
+        }
+
+        setErrors(tempErrors);
+
+        // If there are validation errors, show them in SweetAlert
+        if (!isValid) {
+            // Create HTML content for each error
+            const errorMessages = Object.entries(tempErrors).map(([field, message]) => {
+                // Capitalize first letter of field name
+                const fieldName = field.charAt(0).toUpperCase() + field.slice(1);
+                return `${message}`;
+            }).join('<br>');
+
+            Swal.fire({
+                icon: 'warning',
+                title: 'Validation Error',
+                text: 'Please check all fields and try again.',
+                confirmButtonColor: '#DA3731'
+            });
+        }
+
+        return isValid;
+    };
+
+    // Form submission handler
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        // Simple validation
-        let errors = {};
-        if (!name.trim()) {
-            errors.name = 'Name is required';
-        }
-        if (!email.trim()) {
-            errors.email = 'Email is required';
-        }
-        if (!phone.trim()) {
-            errors.phone = 'Phone number is required';
-        }
-        if (!association.trim()) {
-            errors.association = 'Association is required';
-        }
-
-        // Set errors object in state
-        setFormErrors(errors);
-
-        // If no errors, proceed with form submission
-        if (Object.keys(errors).length === 0) {
-            // Handle form submission logic here (e.g., API call or further processing)
-            alert('Form submitted successfully!');
-            // Clear form fields after successful submission
-            setName('');
-            setEmail('');
-            setPhone('');
-            setAssociation('');
-            setComments('');
+        if (validateForm()) {
+            setShouldSubmit(true);
         }
     };
+
+    // Reset form after submission
+    const resetForm = () => {
+        setName('');
+        setEmail('');
+        setPhone('');
+        setAssociation('');
+        setComments('');
+        setErrors({});
+    };
+
+    // UseEffect for handling form submission with try/catch
+    useEffect(() => {
+        if (!shouldSubmit) return;
+
+        const sendMail = async () => {
+            setIsSubmitting(true);
+
+            // Show loading state
+            Swal.fire({
+                title: 'Submitting...',
+                text: 'Please wait while we process your query',
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+
+            try {
+                const response = await axios.post("http://localhost:8000/mail/joinus", {
+                    name,
+                    email,
+                    phone,
+                    association,
+                    comments
+                });
+
+                console.log("Form submission response:", response.data);
+
+                // Show success SweetAlert
+                Swal.fire({
+                    title: 'Thank You!',
+                    text: 'Your message has been sent successfully. We will get back to you soon.',
+                    icon: 'success',
+                    confirmButtonText: 'Great!'
+                });
+
+                // Reset form after successful submission
+                resetForm();
+
+            } catch (error) {
+                console.error("Form submission error:", error);
+
+                // Show error SweetAlert with specific error if available
+                Swal.fire({
+                    title: 'Submission Failed',
+                    text: error.response?.data?.message || 'Something went wrong. Please try again.',
+                    icon: 'error',
+                    confirmButtonText: 'Try Again'
+                });
+
+            } finally {
+                setIsSubmitting(false);
+                setShouldSubmit(false);
+            }
+        };
+
+        sendMail();
+    }, [shouldSubmit, name, email, phone, association, comments]);
     return (
         <div>
             <section className="introduction">
@@ -67,61 +177,73 @@ const Joinus = () => {
                                     <div style={{ position: 'relative' }}>
                                         <input
                                             type="text"
-                                            className="form-control"
-                                            placeholder="Your name *"
                                             value={name}
                                             onChange={(e) => setName(e.target.value)}
+                                            className={`form-control ${errors.name ? 'is-invalid' : ''}`}
+                                            placeholder="Your name *"
                                         />
-                                        <img className="users" src={user} alt="" />
+                                        <img className="users" src={user} alt="User icon" />
+                                        {errors.name && <div className="invalid-feedback">{errors.name}</div>}
                                     </div>
-                                    {formErrors.name && <span className="error">{formErrors.name}</span>}
                                     <div style={{ position: 'relative' }}>
                                         <input
-                                            type="text"
-                                            className="form-control"
-                                            placeholder="Your mail *"
+                                            type="email"
                                             value={email}
                                             onChange={(e) => setEmail(e.target.value)}
+                                            className={`form-control ${errors.email ? 'is-invalid' : ''}`}
+                                            placeholder="Your email *"
                                         />
-                                        <img className="email" src={mail} alt="" />
+                                        <img className="email" src={mail} alt="Email icon" />
+                                        {errors.email && <div className="invalid-feedback">{errors.email}</div>}
                                     </div>
-                                    {formErrors.email && <span className="error">{formErrors.email}</span>}
                                     <div style={{ position: 'relative' }}>
                                         <input
-                                            type="text"
-                                            className="form-control"
-                                            placeholder="Your phone *"
+                                            type="tel"
                                             value={phone}
-                                            onChange={(e) => setPhone(e.target.value)}
+                                            onChange={(e) => {
+                                                // Only allow numbers
+                                                const re = /^[0-9\b]+$/;
+                                                if (e.target.value === '' || re.test(e.target.value)) {
+                                                    setPhone(e.target.value);
+                                                }
+                                            }}
+                                            maxLength="10"
+                                            className={`form-control ${errors.phone ? 'is-invalid' : ''}`}
+                                            placeholder="Your phone *"
                                         />
-                                        <img className="phone" src={phonecall} alt="" />
+                                        <img className="phone" src={phonecall} alt="Phone icon" />
+                                        {errors.phone && <div className="invalid-feedback">{errors.phone}</div>}
                                     </div>
-                                    {formErrors.phone && <span className="error">{formErrors.phone}</span>}
                                     <div style={{ position: 'relative' }}>
                                         <input
                                             type="text"
-                                            className="form-control"
-                                            placeholder="Your Association"
                                             value={association}
                                             onChange={(e) => setAssociation(e.target.value)}
+                                            className={`form-control ${errors.association ? 'is-invalid' : ''}`}
+                                            placeholder="Your Association"
                                         />
-                                        <img className="subject" src={helpcircle} alt="" />
+                                        <img className="subject" src={helpcircle} alt="Help icon" />
+                                        {errors.association && <div className="invalid-feedback">{errors.association}</div>}
                                     </div>
-                                    {formErrors.association && <span className="error">{formErrors.association}</span>}
                                     <div style={{ position: 'relative' }}>
                                         <textarea
-                                            style={{ height: 'auto' }}
-                                            placeholder="Your Comments"
-                                            className="form-control"
                                             value={comments}
                                             onChange={(e) => setComments(e.target.value)}
+                                            style={{ height: 'auto' }}
+                                            placeholder="Your Comments *"
+                                            className={`form-control ${errors.comments ? 'is-invalid' : ''}`}
                                             cols="10"
                                             rows="3"
                                         ></textarea>
-                                        <img className="message" src={description} alt="" />
+                                        <img className="message" src={description} alt="Description icon" />
+                                        {errors.comments && <div className="invalid-feedback">{errors.comments}</div>}
                                     </div>
-                                    <button type="submit" className="Send Now">
-                                        Send Now
+                                    <button
+                                        type="submit"
+                                        className="Send Now"
+                                        disabled={isSubmitting}
+                                    >
+                                        {isSubmitting ? 'Submitting Query...' : 'Submit Now'}
                                     </button>
                                 </form>
                             </div>

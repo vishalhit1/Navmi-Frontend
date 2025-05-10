@@ -34,6 +34,8 @@ import Emicalculator from "../Pages/Calculator/Emicalculator";
 import RevisedEMICalculator from "../Pages/Calculator/Revised-emi-tenure";
 import Emicalculatorlist from "../Pages/Emi-calculator-list";
 import Privacypolicy from "../Pages/Privacypolicy";
+import Balancetransfercal from "../Pages/Balancetransfercal";
+import Revisedemical from "../Pages/Revisedemical";
 
 export const routes = [
   {
@@ -215,6 +217,16 @@ export const routes = [
     path: "/emi-calculator-list",
     exact: true,
     element: <Emicalculatorlist />,
+  },
+  {
+    path: "/balance-transfer-calculator-list",
+    exact: true,
+    element: <Balancetransfercal/>
+  },
+  {
+    path: "/revised-emi-calculator-list",
+    exact: true,
+    element: <Revisedemical />,
   },
   {
     path: "/privacy-policy",

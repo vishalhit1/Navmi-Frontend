@@ -397,11 +397,11 @@ const ApplyLoan = () => {
                                     <Col lg={4}>
                                         <div className="loanperform">
                                             <div className="form-group">
-                                                <label htmlFor="existingLoanDetails">Existing Loan Details (if any)</label>
+                                                <label htmlFor="existingLoanDetails">Existing Loan Details</label>
                                                 <input
                                                     type="text"
                                                     className={`form-control ${errors.existingLoanDetails ? 'is-invalid' : ''}`}
-                                                    placeholder="Enter Your Existing Loan Details (if any)"
+                                                    placeholder="Enter Your Existing Loan Details"
                                                     name="existingLoanDetails"
                                                     value={formData.existingLoanDetails}
                                                     onChange={handleInputChange}

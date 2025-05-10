@@ -421,11 +421,11 @@ const ApplyLoan = () => {
                                 <Col lg={4}>
                                     <div className="loanperform">
                                         <div className="form-group">
-                                            <label htmlFor="businessRegistrationNumber">Business Registration Number</label>
+                                            <label htmlFor="businessRegistrationNumber">GSTIN Number</label>
                                             <input
                                                 type="text"
                                                 className={`form-control ${errors.businessRegistrationNumber ? 'is-invalid' : ''}`}
-                                                placeholder="Enter Your Business Registration Number"
+                                                placeholder="Enter Your GSTIN Number"
                                                 name="businessRegistrationNumber"
                                                 value={formData.businessRegistrationNumber}
                                                 onChange={handleChange}
