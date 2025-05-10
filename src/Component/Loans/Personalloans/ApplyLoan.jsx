@@ -19,7 +19,11 @@ const ApplyLoan = () => {
     }
     const sessionStoragetoken = sessionStorage.getItem('token');
 
-
+    // Function to handle successful login
+    const handleLoginSuccess = () => {
+        handleClose2(); // Close login modal
+        setShow(true);  // Open the insurance modal
+    }
     // Form fields
     const [emi, setEmi] = useState('');
     const [fullName, setFullName] = useState('');
@@ -576,7 +580,7 @@ const ApplyLoan = () => {
                 <Modal.Header closeButton>
                 </Modal.Header>
                 <Modal.Body>
-                    <LoginModal handleClose2={handleClose2} />
+                    <LoginModal handleClose2={handleClose2} onLoginSuccess={handleLoginSuccess} />
                 </Modal.Body>
             </Modal>
         </>

@@ -7,8 +7,12 @@ import LoginModal from "../../Common/LoginModal";
 const ApplyLoan = () => {
     const [show, setShow] = useState(false);
     const [show2, setShow2] = useState(false);
+
     const handleClose = () => setShow(false);
     const handleClose2 = () => setShow2(false);
+
+    const sessionStoragetoken = sessionStorage.getItem('token');
+
     const handleShow = () => {
         if (!sessionStoragetoken) {
             setShow2(true);
@@ -17,7 +21,13 @@ const ApplyLoan = () => {
             setShow(true);
         }
     }
-    const sessionStoragetoken = sessionStorage.getItem('token');
+
+    // Function to handle successful login
+    const handleLoginSuccess = () => {
+        handleClose2(); // Close login modal
+        setShow(true);  // Open the insurance modal
+    }
+
     const [loantype, setLoantype] = useState('health'); // Set default loan type to avoid validation issues
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -203,7 +213,7 @@ const ApplyLoan = () => {
         <>
             <button onClick={handleShow} className="applynow blink">Apply Now</button>
 
-            {/* Life Insrurance Modal */}
+            {/* Life Insurance Modal */}
             <Modal show={show} onHide={handleClose} centered size="lg" backdrop="static" keyboard={false}>
                 <Modal.Header
                     closeButton
@@ -297,8 +307,8 @@ const ApplyLoan = () => {
                                         className="submitbuttonloanform"
                                         style={{ textAlign: "center", width: "100%", marginTop: "20px" }}
                                     >
-                                        <button 
-                                            type="submit" 
+                                        <button
+                                            type="submit"
                                             className="submit12"
                                             disabled={isSubmitting}
                                         >
@@ -320,7 +330,7 @@ const ApplyLoan = () => {
                 <Modal.Header closeButton>
                 </Modal.Header>
                 <Modal.Body>
-                  <LoginModal handleClose2={handleClose2}/>
+                    <LoginModal handleClose2={handleClose2} onLoginSuccess={handleLoginSuccess} />
                 </Modal.Body>
             </Modal>
         </>

@@ -10,7 +10,7 @@ const ApplyLoan = () => {
     const handleClose = () => setShow(false);
     const handleClose2 = () => setShow2(false);
     const sessionStoragetoken = sessionStorage.getItem('token');
-    
+
     const handleShow = () => {
         if (!sessionStoragetoken) {
             setShow2(true);
@@ -19,7 +19,7 @@ const ApplyLoan = () => {
             setShow(true);
         }
     }
-    
+
     // Form state variables
     const [formData, setFormData] = useState({
         fullName: '',
@@ -38,7 +38,13 @@ const ApplyLoan = () => {
         approvedBuildingPlan: '',
         expectedCompletionDate: ''
     });
-    
+
+    // Function to handle successful login
+    const handleLoginSuccess = () => {
+        handleClose2(); // Close login modal
+        setShow(true);  // Open the insurance modal
+    }
+
     // Form validation states
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -58,7 +64,7 @@ const ApplyLoan = () => {
             ...formData,
             [name]: value
         });
-        
+
         // Clear error for the field
         if (errors[name]) {
             setErrors({
@@ -313,7 +319,7 @@ const ApplyLoan = () => {
                                         <div className="loanperform">
                                             <div className="form-group">
                                                 <label htmlFor="propertyType">Property Type</label>
-                                                <select 
+                                                <select
                                                     className={`form-control ${errors.propertyType ? 'is-invalid' : ''}`}
                                                     name="propertyType"
                                                     value={formData.propertyType}
@@ -414,7 +420,7 @@ const ApplyLoan = () => {
                                         <div className="loanperform">
                                             <div className="form-group">
                                                 <label htmlFor="purposeOfLoan">Purpose of Loan</label>
-                                                <select 
+                                                <select
                                                     className={`form-control ${errors.purposeOfLoan ? 'is-invalid' : ''}`}
                                                     name="purposeOfLoan"
                                                     value={formData.purposeOfLoan}
@@ -435,7 +441,7 @@ const ApplyLoan = () => {
                                         <div className="loanperform">
                                             <div className="form-group">
                                                 <label htmlFor="repaymentTenure">Repayment Tenure</label>
-                                                <select 
+                                                <select
                                                     className={`form-control ${errors.repaymentTenure ? 'is-invalid' : ''}`}
                                                     name="repaymentTenure"
                                                     value={formData.repaymentTenure}
@@ -457,7 +463,7 @@ const ApplyLoan = () => {
                                         <div className="loanperform">
                                             <div className="form-group">
                                                 <label htmlFor="approvedBuildingPlan">Approved Building Plan</label>
-                                                <select 
+                                                <select
                                                     className={`form-control ${errors.approvedBuildingPlan ? 'is-invalid' : ''}`}
                                                     name="approvedBuildingPlan"
                                                     value={formData.approvedBuildingPlan}
@@ -492,9 +498,9 @@ const ApplyLoan = () => {
                                         className="submitbuttonloanform"
                                         style={{ textAlign: "center", width: "100%" }}
                                     >
-                                        <button 
-                                            type="submit" 
-                                            className="submit12" 
+                                        <button
+                                            type="submit"
+                                            className="submit12"
                                             disabled={isSubmitting}
                                         >
                                             {isSubmitting ? 'Submitting...' : 'Submit'}
@@ -509,7 +515,7 @@ const ApplyLoan = () => {
                     </h3>
                 </Modal.Body>
             </Modal>
-            
+
             {/* Login Modal */}
             <Modal className='QuickEnqu' size="xl"
                 aria-labelledby="contained-modal-title-vcenter"
@@ -517,7 +523,7 @@ const ApplyLoan = () => {
                 <Modal.Header closeButton>
                 </Modal.Header>
                 <Modal.Body>
-                  <LoginModal handleClose2={handleClose2}/>
+                    <LoginModal handleClose2={handleClose2} onLoginSuccess={handleLoginSuccess} />
                 </Modal.Body>
             </Modal>
         </>

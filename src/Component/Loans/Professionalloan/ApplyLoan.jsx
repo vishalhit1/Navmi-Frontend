@@ -38,6 +38,13 @@ const ApplyLoan = () => {
     const [purposeOfLoan, setPurposeOfLoan] = useState('');
     const [repaymentTenure, setRepaymentTenure] = useState('');
 
+
+    // Function to handle successful login
+    const handleLoginSuccess = () => {
+        handleClose2(); // Close login modal
+        setShow(true);  // Open the insurance modal
+    }
+
     // Form validation states
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -515,7 +522,7 @@ const ApplyLoan = () => {
                 <Modal.Header closeButton>
                 </Modal.Header>
                 <Modal.Body>
-                    <LoginModal handleClose2={handleClose2}/>
+                <LoginModal handleClose2={handleClose2} onLoginSuccess={handleLoginSuccess} />
                 </Modal.Body>
             </Modal>
         </>

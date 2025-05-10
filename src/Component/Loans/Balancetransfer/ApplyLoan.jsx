@@ -27,7 +27,7 @@ const ApplyLoan = () => {
 
     const handleClose2 = () => setShow2(false);
     const handleClose = () => setShow(false);
-    
+
     const handleShow = () => {
         const token = sessionStorage.getItem('token');
         if (!token) {
@@ -43,7 +43,7 @@ const ApplyLoan = () => {
             ...prev,
             [name]: value
         }));
-        
+
         // Clear error when user types
         if (errors[name]) {
             setErrors(prev => ({
@@ -59,8 +59,8 @@ const ApplyLoan = () => {
 
         // Required fields validation
         const requiredFields = [
-            'fullName', 'age', 'panNo', 'contactNumber', 'emailId', 
-            'loanType', 'loanAmount', 'loanTenureRemaining', 
+            'fullName', 'age', 'panNo', 'contactNumber', 'emailId',
+            'loanType', 'loanAmount', 'loanTenureRemaining',
             'currentEmi', 'interestRate', 'transferAmount', 'requiredTenure'
         ];
 
@@ -106,9 +106,15 @@ const ApplyLoan = () => {
         return isValid;
     };
 
+    // Function to handle successful login
+    const handleLoginSuccess = () => {
+        handleClose2(); // Close login modal
+        setShow(true);  // Open the insurance modal
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
+
         if (!validateForm()) {
             Swal.fire({
                 icon: 'error',
@@ -132,7 +138,7 @@ const ApplyLoan = () => {
 
             // Submit to your API endpoint
             const response = await axios.post("http://localhost:8000/mail/balancetransfer", formData);
-            
+
             // Success handling
             Swal.fire({
                 title: 'Success!',
@@ -401,11 +407,11 @@ const ApplyLoan = () => {
                     </h3>
                 </Modal.Body>
             </Modal>
-            
+
             <Modal className='QuickEnqu' size="xl" centered backdrop="static" keyboard={false} show={show2} onHide={handleClose2}>
                 <Modal.Header closeButton />
                 <Modal.Body>
-                    <LoginModal handleClose2={handleClose2} />
+                    <LoginModal handleClose2={handleClose2} onLoginSuccess={handleLoginSuccess} />
                 </Modal.Body>
             </Modal>
         </>

@@ -211,6 +211,12 @@ const ApplyLoan = () => {
         return isValid;
     };
 
+    // Function to handle successful login
+    const handleLoginSuccess = () => {
+        handleClose2(); // Close login modal
+        setShow(true);  // Open the insurance modal
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -872,7 +878,7 @@ const ApplyLoan = () => {
                 <Modal.Header closeButton>
                 </Modal.Header>
                 <Modal.Body>
-                    <LoginModal handleClose2={handleClose2} />
+                    <LoginModal handleClose2={handleClose2} onLoginSuccess={handleLoginSuccess} />
                 </Modal.Body>
             </Modal>
         </>
